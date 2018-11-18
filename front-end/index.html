@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <link rel="shortcut icon" href="images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.png" type="image/x-icon">
+
+    <title>Code Dream</title>
+	
+    <!--Library Styles-->    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/font-awesome.css" rel="stylesheet">
+    <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
+	
+    <!--Template Styles-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scheme/purple.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-spy="scroll">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+	
+    <div id="main-wrapper">
+        
+        <!-- Site Navigation -->
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <script>
+                    function over(){
+                        document.getElementById('html-marker').style="display: block";
+                        document.getElementById('css-marker').style="display: block";
+                        document.getElementById('js-marker').style="display: block";
+                        document.getElementById('php-marker').style="display: block";
+                    }
+                    function out(){
+                        document.getElementById('html-marker').style="display: none";
+                        document.getElementById('css-marker').style="display: none";
+                        document.getElementById('js-marker').style="display: none";
+                        document.getElementById('php-marker').style="display: none";
+                    }
+                    function centerOver(){
+                        document.getElementById('daily-study-marker').style="display: block";
+                        document.getElementById('myCarousel-marker').style="display: block";
+                    }
+                    function centerOut(){
+                        document.getElementById('daily-study-marker').style="display: none";
+                        document.getElementById('myCarousel-marker').style="display: none";
+                    }
+                </script>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a class="sscroll" href="index.html#home">主页</a></li>
+                        <li><a id="course" class="sscroll" onmousemove="over()" onmouseout="out()" href="index.html#services">课程</a></li>
+                        <li><a id="html-marker" class="" style="display: none;" onmousemove="over()" onmouseout="out()" href="html-course.html">HTML</a></li>
+                        <li><a id="css-marker" class="" style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">CSS</a></li>
+                        <li><a id="js-marker" class="" style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">JS</a></li>
+                        <li><a id="php-marker" class="" style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">PHP</a></li>
+                        <li><a class="sscroll" href="index.html#services">知识图谱</a></li>
+                        <li><a class="sscroll" href="index.html#blog-front">交流栈</a></li>
+                        <li><a class="sscroll" href="index.html#contact">联系我们</a></li>
+                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a>
+                        <li><a href="./personal-center.html" class="nav-unlogin" onmousemove="centerOver()" onmouseout="centerOut()">个人中心</a>
+                        <li><a id="daily-study-marker" class="" style="display: none;" onmousemove="centerOver()" onmouseout="centerOut()" href="personal-center.html#home">基本资料</a></li>
+                        <li><a id="myCarousel-marker" class="" style="display: none;" onmousemove="centerOver()" onmouseout="centerOut()" href="personal-center.html#services">每日学习时长</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div id="container">
+            <!-- BEGIN HOME -->
+            <section id="home" class="home">
+                <!-- Superslides -->
+                <div id="home-slide">
+                    <ul class="slides-container text-center">
+                        <li>
+                            <div class="slide-text">
+                                <h2>与我们一起学习</h2>
+                                <span>你可以在这里学习 HTML, CSS, JS以及PHP </span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="images/slider/slide-1.jpg" class="par" alt="first">
+                        </li>
+                        <li>
+                            <div class="slide-text">
+                                <h2>遇见更多的朋友</h2>
+                                <span>你可以在交流栈与志同道合的朋友一起交流</span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="images/slider/slide-2.jpg" class="par" alt="first">
+                        </li>
+                        <li>
+                            <div class="slide-text">
+                                <h2>收获成长</h2>
+                                <span>你可以在个人中心看到自己每日登陆的时长，更有专注度展示哦</span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="images/slider/slide-3.jpg" class="par" alt="first">
+                        </li>
+                    </ul>
+                    <nav class="slides-navigation slidez">
+                        <a href="javascript:;" class="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                        <a href="javascript:;" class="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </nav>
+                </div>
+                <!-- End of Superslide -->
+            </section>
+            <!-- END HOME -->
+            
+            <!-- BEGIN SERVICES -->
+            <section id="services" class="services">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="header-content">
+                            <h2>课程</h2>
+                            <h3>以下是我们目前提供的课程</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="service">
+                                    <div class="icon-holder">
+                                        <i class="fa fa-paper-plane"></i>
+                                    </div>
+                                    <h3 class="heading">HTML</h3>
+                                    <p class="description">超文本标记语言，标准通用标记语言下的一个应用。“超文本”就是指页面内可以包含图片、链接，甚至音乐、程序等非文字元素。</p>
+				</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="service">
+                                    <div class="icon-holder">
+                                        <i class="fa fa-diamond"></i>
+                                    </div>
+                                    <h3 class="heading">CSS</h3>
+                                    <p class="description">CSS能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。</p>
+				</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="service">
+                                    <div class="icon-holder">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                    <h3 class="heading">JavaScript</h3>
+                                    <p class="description">JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。</p>
+				</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="service">
+                                    <div class="icon-holder">
+                                        <i class="fa fa-heartbeat"></i>
+                                    </div>
+                                    <h3 class="heading">PHP</h3>
+                                    <p class="description">PHP是一种通用开源脚本语言，是世界上最好的语言。</p>
+				</div>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </section>
+            <!-- END SERVICES -->
+
+            <!-- BEGIN BLOG -->
+            <section id="blog-front" class="blog-front gray">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>交流栈</h2>
+                            <h3>欢迎各位在这里分享你们的知识</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <article class="col-md-4 col-sm-6">
+                        <figure class="blog-thumb">
+                            <img src="images/blog/blog-1.jpg" alt="blog-thumb">
+                        </figure>
+                        <div class="post-area">
+                            <a class="post-cat" href="blog-post.html">
+                            <h4>分享</h4>
+                            </a>
+                            <a class="post-title" href="blog-post.html">
+                                <h3>说你想说的事情</h3>
+                            </a>
+                            <p class="post-content">在这里你可以畅所欲言</p>                            
+                        </div>
+                    </article>
+
+                    <article class="col-md-4 col-sm-6">
+                        <figure class="blog-thumb">
+                            <img src="images/blog/blog-2.jpg" alt="blog-thumb">
+                        </figure>
+                        <div class="post-area">
+                            <a class="post-cat" href="blog-post.html">
+                            <h4>交流</h4>
+                            </a>
+                            <a class="post-title" href="blog-post.html">
+                                <h3>谈天说地</h3>
+                            </a>
+                            <p class="post-content">用你们的思想碰撞出火花</p>
+                        </div>
+                    </article>
+
+                    <article class="col-md-4 col-sm-6">
+                        <figure class="blog-thumb">
+                            <img src="images/blog/blog-3.jpg" alt="blog-thumb">
+                        </figure>
+                        <div class="post-area">
+                            <a class="post-cat" href="blog-post.html">
+                            <h4>解惑</h4>
+                            </a>
+                            <a class="post-title" href="blog-post.html">
+                                <h3>提出问题并解决它</h3>
+                            </a>
+                            <p class="post-content">在这里，疑惑与解答交织在一起</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="btn blog-btn" href="blog.html">了解更多</a>
+                    </div>
+                </div>
+            </section>
+            <!-- END BLOG -->
+
+            <!-- BEGIN CONTACT -->
+            <section id="contact" class="contact gray">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>联系我们</h2>
+                            <h3>让我们知道你还想有什么改进</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="address">
+                            <h2>联系方式</h2>
+                            <ul class="office">
+                                <li><i class="fa fa-phone"></i> <strong>Phone:</strong> 123456789</li>
+                                <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">123456789@qq.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <form id="contact-form" role="form">                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="c_name" placeholder="Name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="c_email" placeholder="Email">                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" id="c_message" rows="10" placeholder="Message"></textarea>
+                            </div>
+                            <br/>
+                            <button type="submit" class="btn">发送邮件</button>
+                            <div class="ajax-response"></div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- END CONTACT -->
+
+            <!-- BEGIN MAP -->
+            <section id="course-map" class="services">
+                <div class="row">
+                    <div class="col-md-4 about-nav5">
+                        <a class="scroll" href="#"><span class="nav-icon5"> </span><label>Portfolio</label></a>
+                    </div>
+                </div>
+            </section>
+            <!-- END MAP -->
+
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:;"><i class="fa fa-dribbble"></i></a>
+                        </div> 
+                        <p>
+                            我们项目组
+                        </p>               
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+
+
+    <!-- Back to top -->
+    <div id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+
+    <!-- Library Scripts -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/lib/jquery.preloader.js"></script>
+    <script src="js/lib/nivo-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.superslides.min.js"></script>
+    <script src="js/lib/smoothscroll.js"></script>
+    <script src="js/lib/jquery.sudoslider.min.js"></script>
+    <script src="js/lib/jquery.bxslider.min.js"></script>
+    <script src="js/lib/jquery.mixitup.min.js"></script>
+    <script src="js/lib/jquery.backtotop.js"></script>
+    <script src="js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="js/main.js"></script>
+</body>
+
+</html>
