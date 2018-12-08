@@ -50,7 +50,7 @@ class Ccourse
             array_push($singleCourse, [
                     "name"=>$value["courseName"],
                     "profile"=>$value["shortSummary"],
-                    "courseID"=>$value["id"]]);
+                    "courseID"=>$value["ID"]]);
             array_push($courseList, $singleCourse);
         }
         return json_encode(([
@@ -122,6 +122,28 @@ class Ccourse
     /**
      * Writer:      吴潘安
      * Date:        2018/12/7
+     * Function:    修改课程接口，根据输入更新数据库中课程名、简介
+     */
+    public function editCourse(Request $request)
+    {
+        $post = $request->post();
+        // 向数据库中更新数据
+        $course = new Course;
+        // save方法第二个参数为更新条件
+        $course->save([
+            'courseName' => $post["name"],
+            'preCourseID' => $post["preCourseID"],
+            'shortSummary' => $post["shortSummary"],
+            'longSummary' => $post["longSummary"]
+        ],['ID' => $post["courseID"]]);
+
+        $response = array("responseStatus" => 0);
+        return json_encode($response);
+    }
+
+    /**
+     * Writer:      吴潘安
+     * Date:        2018/12/7
      * Function:    修改小节接口，根据输入更新数据库中相应小节内容
      */
     public function editSection(Request $request)
@@ -133,9 +155,73 @@ class Ccourse
         $section->save([
             'title' => $post["title"],
             'content' => $post["content"]
-        ],['id' => $post["sectionID"]]);
+        ],['ID' => $post["sectionID"]]);
 
         $response = array("responseStatus" => 0);
+        return json_encode($response);
+    }
+
+    /**
+     * Writer:      吴潘安
+     * Date:        2018/12/8
+     * Function:    修改章节接口，根据输入更新数据库中章节名
+     */
+    public function editChapter(Request $request)
+    {
+        $post = $request->post();
+        // 向数据库中更新数据
+        $chapter = new Chapter;
+        // save方法第二个参数为更新条件
+        $chapter->save([
+            'chapterTitle' => $post["name"]
+        ],['ID' => $post["chapterID"]]);
+
+        $response = array("responseStatus" => 0);
+        return json_encode($response);
+    }
+
+    /**
+     * Writer:      吴潘安
+     * Date:        2018/12/8
+     * Function:    删除课程接口，删除数据库表中的课程数据
+     */
+    public function deleteCourse(Request $request){
+        $post = $request->post();
+        $result = Course::destroy($post["courseID"]);
+        if($result)
+            $response = array("responseStatus" => 0);
+        else
+            $response = array("responseStatus" => 1);
+        return json_encode($response);
+    }
+
+    /**
+     * Writer:      吴潘安
+     * Date:        2018/12/8
+     * Function:    删除章节接口，删除数据库表中的章节数据
+     */
+    public function deleteChapter(Request $request){
+        $post = $request->post();
+        $result = Chapter::destroy($post["chapterID"]);
+        if($result)
+            $response = array("responseStatus" => 0);
+        else
+            $response = array("responseStatus" => 1);
+        return json_encode($response);
+    }
+
+    /**
+     * Writer:      吴潘安
+     * Date:        2018/12/8
+     * Function:    删除小节接口，删除数据库表中的小节数据
+     */
+    public function deleteSection(Request $request){
+        $post = $request->post();
+        $result = Section::destroy($post["sectionID"]);
+        if($result)
+            $response = array("responseStatus" => 0);
+        else
+            $response = array("responseStatus" => 1);
         return json_encode($response);
     }
 
@@ -177,19 +263,19 @@ class Ccourse
         $chapter = array();
         $sectionIDList = array();
         foreach($result as $key=>$value){
-            $chapterID = $value["id"];
+            $chapterID = $value["ID"];
             $sections = Section::where("chapterID","=", $chapterID)->select();
             $sectionList = array();
             foreach ($sections as $k=>$section){
                 $singleSection = [
-                    "sectionID"=>$section["id"],
+                    "sectionID"=>$section["ID"],
                     "sectionName"=>$section["title"],
                 ];
-                array_push($sectionIDList, $section["id"]);
+                array_push($sectionIDList, $section["ID"]);
                 array_push($sectionList, $singleSection);
             }
             $singleChapter = [
-                "chapterID"=>$value["id"],
+                "chapterID"=>$value["ID"],
                 "chapterName"=>$value["chapterTitle"],
                 "section"=>$sectionList
             ];
@@ -246,25 +332,5 @@ class Ccourse
             //json_encode($resultArray);
     }
 
-    /**
-     * Writer:      吴潘安
-     * Date:        2018/12/7
-     * Function:    修改课程接口，根据输入更新数据库中课程名、简介
-     */
-    public function editCourse(Request $request)
-    {
-        $post = $request->post();
-        // 向数据库中更新数据
-        $course = new Course;
-        // save方法第二个参数为更新条件
-        $course->save([
-            'courseName' => $post["name"],
-            'preCourseID' => $post["preCourseID"],
-            'shortSummary' => $post["shortSummary"],
-            'longSummary' => $post["longSummary"]
-        ],['id' => $post["courseID"]]);
 
-        $response = array("responseStatus" => 0);
-        return json_encode($response);
-    }
 }
