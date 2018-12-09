@@ -187,7 +187,7 @@ class Ccourse
      */
     public function deleteCourse(Request $request){
         $post = $request->post();
-        $result = Course::destroy($post["courseID"]);
+        $result = Course::get($post["courseID"])->delete();
         if($result)
             $response = array("responseStatus" => 0);
         else
@@ -202,7 +202,8 @@ class Ccourse
      */
     public function deleteChapter(Request $request){
         $post = $request->post();
-        $result = Chapter::destroy($post["chapterID"]);
+        $result = Chapter::get($post["chapterID"]);
+        $result = $result->delete();
         if($result)
             $response = array("responseStatus" => 0);
         else
@@ -217,7 +218,7 @@ class Ccourse
      */
     public function deleteSection(Request $request){
         $post = $request->post();
-        $result = Section::destroy($post["sectionID"]);
+        $result = Section::get($post["sectionID"])->delete();
         if($result)
             $response = array("responseStatus" => 0);
         else
@@ -296,11 +297,6 @@ class Ccourse
         $get = $request->get();
         $sectionID = $get["sectionID"];
         $section = Section::get($sectionID);
-        $resultArray = [
-            "responseStatus"=>0,
-            "title" => $section["title"],
-            "content" => $section["content"]
-        ];
 
         $sectionIDList = Session::get("sectionIDList");
         $count = count($sectionIDList);
@@ -314,7 +310,6 @@ class Ccourse
             ->where('courseID',$courseID)
             ->find();
 
-        $response = 0;
         if($instance){
             $instance->save([
                 "learningProgress" => max($instance["learningProgress"], $percent)
@@ -325,11 +320,14 @@ class Ccourse
                 "courseID" => $courseID,
                 "learningProgress" => $percent
             ]);
-            $response = 1;
         }
 
-        return $response;
-            //json_encode($resultArray);
+        $resultArray = [
+            "responseStatus"=>0,
+            "title" => $section["title"],
+            "content" => $section["content"]
+        ];
+        return json_encode($resultArray);
     }
 
 
