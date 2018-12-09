@@ -18,75 +18,53 @@ use think\Request;
 use think\Validate;
 
 class Cblog {
-    public function index() {
+//    public function index() {
+//        return view();
+//    }
+
+    /*
+     * created on 12/9
+     * 查看帖子列表
+     */
+    public function stack() {
         return view();
     }
 
     /*
-     * updated on 12/7
+     * created on 12/7
+     * 查看帖子
      */
     public function blog() {
         return view();
     }
 
     /*
-     * updated on 12/9
+     * created on 12/9
+     * 发布帖子
      */
-    public function stack() {
+    public function post() {
         return view();
     }
 
-    public function add(Request $request) {
-        $post = $request->post();
-        $content = $post['comment'];
-        $courseId = $post['courseID'];
-
-        //updated on 2018/12/04
-        //$uid = Session::get("id");
-        $uid = "u1";
-
-        $date = date('Y-m-d H:i:s');
-        $responseStatus = 1;
-
-        $result1 = Db::table('Message')->insert(["content"=>$content, "courseID"=>$courseId, "releaseTime"=>$date]);
-
-        //updated on 2018/12/04
-        //$result2 = Db('User')
-
-        if($result1) {
-            $responseStatus = 0;
-        }
-
-        return json_encode(
-            array(
-                "responseStatus"=>$responseStatus,
-            )
-        );
-    }
-
-    /*updated on 2018/12/7
-     *交流栈分别获取前三门课程的最新五条帖子
+    /*created on 2018/12/7
+     *交流栈分别获取每门课程的最新三条帖子
+     * 用了Blog模型和Course模型
      * 测试成功 12/7
+     * modified on 12/9 ：改为获取每门课程的最新三条帖子
      */
     public function getIndexList() {
         $indexList = array();
-        $minCourseId = Blog::min('courseID'); //blog涉及的最小课程id
-        $cnt = Blog::count('distinct courseID');  //blog涉及的课程数量
 
-        //如果多于3门课程，选前三门
-        if($cnt > 3) {
-            $cnt = 3;
-        }
-        for($i = 0; $i < $cnt; $i++) {
+        //获取课程
+        $courseResult = Course::select();
+
+        $i = 0;
+        foreach ($courseResult as $course) {
             $curIndexList = &$indexList[$i];
-            $curIndexList['courseID'] = $minCourseId + $i;
+            $curIndexList['courseID'] = $course['ID'];
+            $curIndexList['courseName'] = $course['courseName'];
 
-            $courseNameResult = Course::where(['ID'=>$curIndexList['courseID']])->find();
-            if($courseNameResult) {
-                $curIndexList['courseName'] = $courseNameResult['courseName'];
-            }
-
-            $result = Db::table('Blog')->where(['courseID'=>$curIndexList['courseID']])->order('time desc')->limit(0,5)->select();
+            $result = Blog::where(['courseID'=>$curIndexList['courseID']])->order('time desc')->limit(0,3)->select();
 
             if($result) {
 
@@ -101,6 +79,8 @@ class Cblog {
                     $j++;
                 }
             }
+
+            $i++;
         }
 
         return json_encode(
@@ -110,8 +90,9 @@ class Cblog {
         );
     }
 
-    /*updated on 12/7
-     *获取帖子列表
+    /*created on 12/7
+     *获取当前课程的所有帖子列表
+     * 用了Blog模型和Message模型
      * 测试成功 12/7
      */
     public function getBlogList() {
@@ -157,8 +138,8 @@ class Cblog {
     /*
      * created on 12/7
      * 获取帖子内容和对应留言
+     * 用了Message模型、User模型、Blog模型和Collectblog表
      * 测试成功 12/9
-     * 待确认问题：headLink，昵称是否可以重复，是否只返回三条评论
      */
     public function getBlog() {
         $blogID = Session::get('blogID');
@@ -166,8 +147,7 @@ class Cblog {
 //        $blogID = "1";
 //        $userID = "u1";
 
-        //只返回三条评论
-        $result = Message::where(['blogID'=>$blogID])->order('time desc')->limit(0,3)->select();
+        $result = Message::where(['blogID'=>$blogID])->order('time desc')->select();
         $comment = array();
         if($result) {
             $i = 0;
@@ -249,5 +229,240 @@ class Cblog {
     }
 
 
-    //先测试Session！
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 发表帖子
+     * 用了Blog模型和Userblog表
+     * 测试成功 12/9
+     */
+    public function addBlog(Request $request) {
+        $post = $request->post();
+        $title = $post['title'];
+        $content = $post['content'];
+        $userID = Session::get('userID');
+        $courseID = Session::get('courseID');
+        $nickname = Session::get('nickname');
+//        $userID = "u1";
+//        $courseID = "1";
+//        $nickname = "king";
+
+        $date = date('Y-m-d H:i:s');
+
+        $result = Blog::insert(["title"=>$title, "content"=>$content, "time"=>$date, "author"=>$nickname, "courseID"=>$courseID]);
+        if($result) {
+            //前提是blogID自增，获取新数据id
+            //$blogID = Blog::max('ID');
+            $blogID = Blog::getLastInsID();
+        }
+        else {
+            return json_encode(array(
+               "responseStatus"=>1,
+            ));
+        }
+
+        $result2 = Db::table('Userblog')->insert(['userID'=>$userID, 'blogID'=>$blogID]);
+        if($result2) {
+        }
+        else {
+            return json_encode(array(
+                "responseStatus"=>1,
+            ));
+        }
+
+        return json_encode(array(
+            "responseStatus"=>0,
+        ));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 删除帖子
+     * 用了Blog模型
+     * 用delete方法
+     * 测试成功
+     */
+    public function deleteBlog() {
+        $blogID = Session::get('blogID');
+
+        $result = Blog::where(["ID"=>$blogID])->delete();
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(
+            array(
+                "responseStatus"=>$responseStatus,
+            )
+        );
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 修改帖子
+     * 用了Blog模型
+     * 必须传title过来，如果title为空，则表里的title也更新为空
+     * 测试成功
+     */
+    public function modifyBlog(Request $request) {
+        $post = $request->post();
+        $title = $post['title'];
+        $content = $post['content'];
+        $blogID = $post['blogID'];
+        $time = date('Y-m-d H:i:s');
+
+        $result = Blog::get($blogID)->save(["title"=>$title,"content"=>$content, "time"=>$time]);
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 收藏帖子
+     *用了Collectblog表
+     * 测试成功
+     */
+    public function collect() {
+        $userID = Session::get('userID');
+        $blogID = Session::get('blogID');
+//        $userID = "u2";
+//        $blogID = 4;
+
+        $result = Db::table('Collectblog')->insert(["userID"=>$userID, "blogID"=>$blogID]);
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 取消收藏帖子
+     * 用了Collectblog表
+     * 用delete方法
+     * 测试成功
+     */
+    public function cancelCollect() {
+        $userID = Session::get('userID');
+        $blogID = Session::get('blogID');
+//        $userID = "u2";
+//        $blogID = 3;
+
+        $result = Db::table('Collectblog')->where(["userID"=>$userID, "blogID"=>$blogID])->delete();
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 发布留言
+     * 用了Message模型和Usermessage表
+     * ！如果不是回复留言的留言，传过来的“-1”需要为字符串，表里的replyID是null
+     * nickname要存到表中
+     * 测试成功
+     */
+    public function replyComment(Request $request) {
+        $post = $request->post();
+        $content = $post['content'];
+        $replyID = $post['replyID']; //-1代表不是回复留言的留言
+        if($replyID == "-1") {
+            $replyID = null;
+        }
+        $time = date('Y-m-d H:i:s');
+
+        $userID = Session::get('userID');
+        $nickname = Session::get('nickname');
+        $blogID = Session::get('blogID');
+//        $userID = "u1";
+//        $nickname = "king";
+//        $blogID = 3;
+
+        $result = Message::insert(["content"=>$content, "replyID"=>$replyID, "nickname"=>$nickname, "blogID"=>$blogID, "time"=>$time]);
+        if($result) {
+            //新插入数据的ID
+            $messageID = Message::getLastInsID();
+        }
+        else {
+            return json_encode(array("responseStatus"=>1));
+        }
+
+        $result2 = Db::table('Usermessage')->insert(["userID"=>$userID, "messageID"=>$messageID]);
+        if($result2) {
+        }
+        else {
+            return json_encode(array("responseStatus"=>1));
+        }
+
+        return json_encode(array("responseStatus"=>0));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 修改留言
+     * 用了Message模型
+     * 测试成功
+     */
+    public function modifyComment(Request $request) {
+        $post = $request->post();
+        $content = $post['content'];
+        $messageID = $post['commentID'];
+        $time = date('Y-m-d H:i:s');
+
+        $result = Message::get($messageID)->save(["content"=>$content, "time"=>$time]);
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
+
+    /*
+     * written by 卢彦谚
+     * created on 12/9
+     * 删除留言
+     * 用了Message模型
+     * 测试成功
+     */
+    public function deleteComment(Request $request) {
+        $post = $request->post();
+        $commentID = $post['commentID'];
+
+        $result = Message::where(['ID'=>$commentID])->delete();
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
 }

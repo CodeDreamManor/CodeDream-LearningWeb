@@ -30,10 +30,9 @@ Route::rule('/personalcenter/getAllInfo', 'index/Personalcenter/getAllInfo');
 Route::rule('/personalcenter/modify', 'index/Personalcenter/modify');
 
 //messageboard
-Route::rule('Cblog/index', 'index/Cblog/index');
 Route::rule('Cblog/stack', 'index/Cblog/stack');
 Route::rule('Cblog/blog', 'index/Cblog/blog');
-Route::rule('/cblog/add', 'index/Cblog/add');
+Route::rule('Cblog/post', 'index/Cblog/post');
 Route::rule('/cblog/getBlogList', 'index/Cblog/getBlogList');
 Route::rule('/cblog/getIndexList', 'index/Cblog/getIndexList');
 Route::rule('/cblog/enter', 'index/Cblog/enter');
@@ -41,6 +40,8 @@ Route::rule('/cblog/getBlog', 'index/Cblog/getBlog');
 Route::rule('/cblog/addBlog', 'index/Cblog/addBlog');
 Route::rule('/cblog/modifyBlog', 'index/Cblog/modifyBlog');
 Route::rule('/cblog/deleteBlog', 'index/Cblog/deleteBlog');
+Route::rule('/cblog/collect', 'index/Cblog/collect');
+Route::rule('/cblog/cancelCollect', 'index/Cblog/cancelCollect');
 Route::rule('/cblog/replyComment', 'index/Cblog/replyComment');
 Route::rule('/cblog/modifyComment', 'index/Cblog/modifyComment');
 Route::rule('/cblog/deleteComment', 'index/Cblog/deleteComment');

@@ -104,8 +104,7 @@ class Personalcenter {
         */
 
         //updated on 12/7
-        //updated on 12/8 将帖子限制为7条以下
-        $result4 = Db::table('Collectblog')->join('Blog',['Collectblog.blogID=Blog.ID'])->where(["userID"=>$userID])->limit(0,7)->select();
+        $result4 = Db::table('Collectblog')->join('Blog',['Collectblog.blogID=Blog.ID'])->where(["userID"=>$userID])->select();
         $collectBlogResult = array();
         if($result4) {
             $i = 0;
