@@ -247,6 +247,7 @@
     var sectionName;
     var chapterID;
     var sectionID;
+    var maxSectionID;
     
     window.onload = function(){
         $.ajax({
@@ -302,7 +303,7 @@
                     var addSectionATemp = document.createElement("a");
                     addSectionATemp.className = "sscroll always-hide";
                     addSectionATemp.innerHTML = "新增小节";
-                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" + ");";
+                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + data["sectionMaxID"] + ");";
                     addSectionLiTemp.append(addSectionATemp);
                     sectionIndex.append(addSectionLiTemp);
                 }
@@ -467,7 +468,7 @@
                                 var addSectionATemp = document.createElement("a");
                                 addSectionATemp.className = "sscroll always-hide";
                                 addSectionATemp.innerHTML = "新增小节";
-                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" +");";
+                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + data["sectionMaxID"] +");";
                                 addSectionLiTemp.append(addSectionATemp);
                                 sectionIndex.append(addSectionLiTemp);
                             }
@@ -538,7 +539,7 @@
                 alert("success!!!");
                 if (data["responseStatus"] === 0){
                     alert("OK");
-                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                    location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
                 }
             },
             error : function(){
