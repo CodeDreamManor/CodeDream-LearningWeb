@@ -247,7 +247,8 @@ class Ccourse
         $resultArray = [
             "responseStatus"=>0,
             "name"=>$course["courseName"],
-            "summary"=>$course["longSummary"]
+            "summary"=>$course["longSummary"],
+            "shortSummary"=>$course["shortSummary"]
         ];
         return json_encode($resultArray);
     }
