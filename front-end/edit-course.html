@@ -247,7 +247,6 @@
     var sectionName;
     var chapterID;
     var sectionID;
-    var maxSectionID;
     
     window.onload = function(){
         $.ajax({
@@ -303,7 +302,7 @@
                     var addSectionATemp = document.createElement("a");
                     addSectionATemp.className = "sscroll always-hide";
                     addSectionATemp.innerHTML = "新增小节";
-                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + data["sectionMaxID"] + ");";
+                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + ");";
                     addSectionLiTemp.append(addSectionATemp);
                     sectionIndex.append(addSectionLiTemp);
                 }
@@ -468,7 +467,7 @@
                                 var addSectionATemp = document.createElement("a");
                                 addSectionATemp.className = "sscroll always-hide";
                                 addSectionATemp.innerHTML = "新增小节";
-                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + data["sectionMaxID"] +");";
+                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] +");";
                                 addSectionLiTemp.append(addSectionATemp);
                                 sectionIndex.append(addSectionLiTemp);
                             }
@@ -522,9 +521,8 @@
             }
         })
     });
-    function addSection(i, j){
+    function addSection(i){
         chapterID = i;
-        sectionID = j;
         $("#course").hide();
         $("#add-chapter-container").hide();
         $("#add-section-container").show();
