@@ -1,0 +1,683 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.png" type="image/x-icon">
+
+    <title>课程管理</title>
+    
+    <!--Library Styles-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/font-awesome.css" rel="stylesheet">
+    <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
+    
+    <!--Template Styles-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scheme/purple.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .always-hide{
+            display: none;
+        }
+        .sscroll:hover .always-hide{
+            display: block;
+        }
+    </style>
+
+    <script type="text/javascript" src="js/showdown-master/dist/showdown.min.js"></script>
+</head>
+
+<body data-spy="scroll">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <div id="main-wrapper">
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav" id = "menu-list">
+                        <li id = "index"><a href="admin.html#home">主页</a></li>
+                        <li><a id="add-chapter" class="sscroll" href="edit-course.html#add-chapter">增加章节</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div id="container">
+
+            <!-- BEGIN BLOG -->
+            <section id="course" class="blog">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div id="primary" class="row">
+                            <div class="col-md-12 mg-bt-80">
+                                <article class="post">
+                                    <div class="post-thumb">
+                                        <a href="edit-course.html">
+                                            <img src="images/post-2.jpg" alt="Blog Post 1" />
+                                        </a>
+                                    </div>
+                                    <div class="post-title">
+                                        <h1 id="title">HTML</h1>
+                                        <button id="edit-title"  class="btn"  type="submit">编辑</button>
+                                        <button id="edit-section-title"  class="btn"  type="submit" style="display:none;">编辑</button>
+                                    </div>
+                                    <div id="edit-title-blank" class="post-title" style="display:none;">
+                                        <input id="edit-title-box" type="text"  class="tit">
+                                        <button id="OK-title"  class="btn">确认</button>
+                                    </div>
+                                    <div id="edit-section-title-blank" class="post-title" style="display:none;">
+                                        <input id="edit-section-title-box" type="text"  class="tit">
+                                        <button id="OK-section-title"  class="btn">确认</button>
+                                    </div>
+                                    <div class="post-content" id="short-summary-content">
+                                    </div>
+                                    <div class="post-content" id="article-content">
+                                        <p>万维网上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。</p>
+                                    </div>
+                                    <div>
+                                        <button id="edit-summary" class="btn" type="submit">编辑</button>
+                                    </div>
+                                    <div>
+                                        <button id="edit-section-content" class="btn" type="submit" style="display:none;">编辑</button>
+                                    </div>
+                                    <div id="edit-summary-blank" style="display:none;">
+                                        <textarea id="edit-short-summary-box" class="form-control" placeholder="short summary for index" style="height: 50px">
+                                        </textarea>
+
+                                        <textarea id="edit-summary-box" class="form-control" placeholder="Article" style="height: 500px">
+                                        </textarea>
+                                        <div>
+                                            <button id="OK-summary" class="btn">确认</button>
+                                        </div>
+                                    </div>
+                                    <div id="edit-section-blank" style="display:none;">
+                                        <textarea id="edit-section-box" class="form-control" placeholder="Article" style="height: 500px">
+                                        </textarea>
+                                        <div>
+                                            <button id="OK-section" class="btn">确认</button>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="contact gray" id="add-chapter-container">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>添加章节</h2>
+                            <h3>请在下面使用填写章节名称</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-12" id = "add-chapter">
+                        <form role="form">
+                        <!--
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <select id="_label" class="form-control">
+                                        <option disabled="disabled">课程名</option>
+                                    </select>
+                                </div>
+                            </div>
+                        -->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <input id="name" type="text" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                            <br/>
+                            <button id="subAddChapterBtn" type="submit" class="btn">确认</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact gray" id="add-section-container" style="display:none;">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>添加小节</h2>
+                            <h3>请在下面使用填写小节名称</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6" id = "add-section">
+                        <form role="form">
+                            <div class="form-group row">
+                                <div class="col-md-13">
+                                    <input id="section-name" type="text" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-13">
+                                    <textarea id="section-article" class="form-control" rows="10" placeholder="Content" onkeyup = "convert()"></textarea>
+                                </div>
+                            </div>
+                            <br/>
+                            <p>你或许要用到
+                                <abbr title="HyperText Markup Language">Markdown</abbr>&nbsp;tags and attributes:
+                            </p>
+                            <code># 一级标题 , ## 二级标题 , ### 三级标题 , #### 四级标题 , ##### 五级标题 , ###### 六级标题 , *斜体* , _斜体_ , **加粗** , __加粗__ , [显示说明](http://lianjie.net) , 分割线---分割线</code>
+                            <br/>
+                            <button id="subAddSectionBtn" type="submit" class="btn">确认</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-6 col-md-6" id = "result">
+
+                    </div>
+                </div>
+            </section>
+            
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:;"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                        <p>
+                           我们项目组
+                        </p>                        
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+
+    </div>
+
+
+
+    <!-- Back to top -->
+    <div class="totop" id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/lib/jquery.preloader.js"></script>
+    <script src="js/lib/nivo-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.superslides.min.js"></script>
+    <script src="js/lib/smoothscroll.js"></script>
+    <script src="js/lib/jquery.bxslider.min.js"></script>
+    <script src="js/lib/jquery.mixitup.min.js"></script>
+    <script src="js/lib/jquery.backtotop.js"></script>
+    <script src="js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="js/main.js"></script>
+</body>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script type = "text/javascript">
+    var chapterArr;
+    var summary;
+    var shortSummary;
+    var sectionContent;
+    var courseName;
+    var sectionName;
+    var chapterID;
+    var sectionID;
+    
+    window.onload = function(){
+        $.ajax({
+            type : "GET",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/getChapter",
+            data : {},
+            dataType : "json",
+            success : function(data){
+                chapterArr = data["chapter"];
+                //alert(chapterArr[0]["name"]);
+                //alert(chapterArr.length);
+                var targetUl = document.getElementById("ul-menu");
+                var index = document.getElementById("index");
+                for (var i = chapterArr.length - 1; i >= 0; i--){
+                    var liTemp = document.createElement("li");
+                    var aTemp = document.createElement("a");
+                    aTemp.className = "sscroll";
+                    aTemp.innerHTML = chapterArr[i]["chapterName"];
+                    //aTemp.style = "display : block";
+                    aTemp.id = "chapter" + chapterArr[i]["chapterID"];
+                    liTemp.appendChild(aTemp);
+                    
+                    //targetUl.prepend(liTemp);
+                    index.after(liTemp);
+                    var cTemp = "chapter" + chapterArr[i]["chapterID"];
+                    //index = document.getElementById(cTemp);
+
+                    var sectionIndex = document.getElementById(cTemp);;
+
+                    var sectionArr = chapterArr[i]["section"];
+                    alert(sectionArr.length);
+                    for(var j = 0; j < sectionArr.length; j++){
+                        var sectionLiTemp = document.createElement("li");
+                        var sectionATemp = document.createElement("a");
+                        sectionATemp.className = "sscroll always-hide";
+                        sectionATemp.innerHTML = sectionArr[j]["sectionName"];
+                        //sectionATemp.href = "javascript:void(0);";
+                        //sectionATemp.href = "javascript:changeArticle(event);";
+                        sectionATemp.href = "javascript:changeArticle(" + chapterArr[i]["chapterID"] + "," + sectionArr[j]["sectionID"] + ");";
+                        //sectionATemp.onclick = "editPosition($(this));";
+                        sectionLiTemp.append(sectionATemp);
+                        var sTemp = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                        sectionLiTemp.id = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                        /*
+                        $("#sTemp").on("click", "li", function(){
+                            alert("success!!!");
+                        });
+                        */
+                        sectionIndex.append(sectionLiTemp);
+                        //sectionIndex = document.getElementById("section" + i + "-" + j);
+                    }
+                    var addSectionLiTemp = document.createElement("li");
+                    var addSectionATemp = document.createElement("a");
+                    addSectionATemp.className = "sscroll always-hide";
+                    addSectionATemp.innerHTML = "新增小节";
+                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" + ");";
+                    addSectionLiTemp.append(addSectionATemp);
+                    sectionIndex.append(addSectionLiTemp);
+                }
+                
+                $.ajax({
+                    type : "GET",
+                    url : "http://rap2api.taobao.org/app/mock/115879/course/getCourse",
+                    data : {},
+                    data : "json",
+                    success : function(data){
+                        $("#title").text(data["name"]);
+                        courseName = data["name"];
+                        summary = data["summary"];
+                        shortSummary = data["shortSummary"];
+                        var converter = new showdown.Converter();
+                        var convertedSummary = converter.makeHtml(summary);
+                        var targetDiv = document.getElementById("article-content");
+                        targetDiv.innerHTML = convertedSummary;
+
+                        var targetShortSummaryDiv = document.getElementById("short-summary-content");
+                        targetShortSummaryDiv.innerHTML = data["shortSummary"];
+
+                        $.ajax({
+                            type: "GET",
+                            url: "http://rap2api.taobao.org/app/mock/115879/course/getCourseList",
+                            data: {},
+                            dataType: "json",
+                            success: function(data){
+                                var value = 0;
+                                var courseIndex = document.getElementById("courseIndex");
+                                var courseSelectIndex = document.getElementById("_label");
+                                var courseArr = data["courseList"];
+                                /*
+                                for (var i = 0; i < courseArr.length; i++){
+                                    var optionTemp = document.createElement("option");
+                                    optionTemp.innerHTML = courseArr[i]["name"];
+                                    optionTemp.value = courseArr[i]["courseID"];
+
+                                    courseSelectIndex.append(optionTemp);
+                                }
+                                */
+                            },
+                            error : function(data){
+                                alert("error");
+                            }
+                        })
+                        
+                    },
+                    error : function(data){
+                        alert("error");
+                    }
+                })
+/*
+                
+                $.ajax({
+                    type: "GET",
+                    url: "http://rap2api.taobao.org/app/mock/115879/course/getCourseList",
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        var value = 0;
+                        var courseIndex = document.getElementById("courseIndex");
+                        var courseSelectIndex = document.getElementById("_label");
+                        var courseArr = data["courseList"];
+                        for (var i = 0; i < courseArr.length; i++){
+                            var optionTemp = document.createElement("option");
+                            optionTemp.innerHTML = courseArr[i]["name"];
+                            optionTemp.value = value;
+                            courseSelectIndex.append(optionTemp);
+                            value++;
+                        }
+                    },
+                    error : function(data){
+                        alert("error");
+                    }
+                })
+                */
+                
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    };
+    function changeArticle(i,j){
+        $.ajax({
+            type : "GET",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/getContent",
+            data : {sectionID : j},
+            dataType : "json",
+            success : function(data){
+                chapterID = i;
+                sectionID = j;
+                sectionName = data["title"];
+                $("#title").text(data["title"]);
+                $("#article-content").empty();
+                $("#short-summary-content").empty();
+                sectionContent = data["content"];
+                var converter = new showdown.Converter();
+                var convertedSectionContent = converter.makeHtml(sectionContent);
+                var targetDiv = document.getElementById("article-content");
+                targetDiv.innerHTML = convertedSectionContent;
+                document.getElementById("edit-summary").style = "display: none";
+                document.getElementById("edit-section-content").style = "display: block";
+                document.getElementById("edit-title").style = "display: none";
+                document.getElementById("edit-section-title").style = "display: block";
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    };
+    $(document).ready(function(){
+        $("#_label").change(function(){
+            $("#menu-list").empty();
+            $("menu-list").innerHTML = '<li id = "index"><a href="admin.html#home">主页</a></li>' + 
+                        '<li><a id="add-chapter" class="sscroll" href="edit-course.html#add-chapter">增加章节</a></li>';
+            $("#article-content").empty();
+            $("#short-summary-content").empty();
+            $.ajax({
+                type : "POST",
+                url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+                data : {courseID : $("#_label").val()},
+                dataType : "json",
+                success : function(data){
+                    $.ajax({
+                        type : "GET",
+                        url : "http://rap2api.taobao.org/app/mock/115879/course/getChapter",
+                        data : {},
+                        dataType : "json",
+                        success : function(data){
+                            chapterArr = data["chapter"];
+                            var targetUl = document.getElementById("ul-menu");
+                            var index = document.getElementById("index");
+                            for (var i = chapterArr.length - 1; i >= 0; i--){
+                                var liTemp = document.createElement("li");
+                                var aTemp = document.createElement("a");
+                                aTemp.className = "sscroll";
+                                aTemp.innerHTML = chapterArr[i]["chapterName"];
+                                aTemp.id = "chapter" + chapterArr[i]["chapterID"];
+                                liTemp.appendChild(aTemp);
+
+                                index.after(liTemp);
+                                var cTemp = "chapter" + chapterArr[i]["chapterID"];
+
+                                var sectionIndex = document.getElementById(cTemp);;
+
+                                var sectionArr = chapterArr[i]["sectionName"];
+                                alert(sectionArr.length);
+                                for(var j = 0; j < sectionArr.length; j++){
+                                    var sectionLiTemp = document.createElement("li");
+                                    var sectionATemp = document.createElement("a");
+                                    sectionATemp.className = "sscroll always-hide";
+                                    sectionATemp.innerHTML = sectionArr[j]["sectionName"];
+                                    sectionATemp.href = "javascript:changeArticle(" + chapterArr[i]["chapterID"] + "," + sectionArr[j]["sectionID"] + ");";
+                                    sectionLiTemp.append(sectionATemp);
+                                    var sTemp = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                                    sectionLiTemp.id = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                                    sectionIndex.append(sectionLiTemp);
+                                }
+                                var addSectionLiTemp = document.createElement("li");
+                                var addSectionATemp = document.createElement("a");
+                                addSectionATemp.className = "sscroll always-hide";
+                                addSectionATemp.innerHTML = "新增小节";
+                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" +");";
+                                addSectionLiTemp.append(addSectionATemp);
+                                sectionIndex.append(addSectionLiTemp);
+                            }
+
+                            $.ajax({
+                                type : "GET",
+                                url : "http://rap2api.taobao.org/app/mock/115879/course/getCourse",
+                                data : {},
+                                data : "json",
+                                success : function(data){
+                                    $("#title").text(data["name"]);
+                                    courseName = data["name"];
+                                    summary = data["summary"];
+                                    shortSummary = data["shortSummary"];
+                                    var converter = new showdown.Converter();
+                                    var convertedSummary = converter.makeHtml(summary);
+                                    var targetDiv = document.getElementById("article-content");
+                                    targetDiv.innerHTML = convertedSummary;
+
+                                    var targetShortSummaryDiv = document.getElementById("short-summary-content");
+                                    targetShortSummaryDiv.innerHTML = data["shortSummary"];
+                                },
+                                error : function(data){
+
+                                }
+                            })
+                        },
+                        error : function(data){
+                            alert("error");
+                        }
+                    })
+                }
+            })
+        })
+    });
+    $("#subAddChapterBtn").click(function(){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/addChapter",
+            data : {chapterTitle: $("#name").val()},
+            dataType : "json",
+            success : function(data){
+                alert("success!!!");
+                if (data["responseStatus"] === 0){
+                    alert("OK");
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                }
+            },
+            error : function(){
+                alert("error");
+            }
+        })
+    });
+    function addSection(i, j){
+        chapterID = i;
+        sectionID = j;
+        $("#course").hide();
+        $("#add-chapter-container").hide();
+        $("#add-section-container").show();
+    };
+    $("#subAddSectionBtn").click(function(){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/addSection",
+            data : {title : $("#section-name").val(), chapterID : chapterID, content : $("#section-article").val()},
+            dataType : "json",
+            success : function(data){
+                alert("success!!!");
+                if (data["responseStatus"] === 0){
+                    alert("OK");
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                }
+            },
+            error : function(){
+                alert("error");
+            }
+        })
+    });
+    function convert(){
+        var article = document.getElementById("section-article").value;
+        var converter = new showdown.Converter();
+        var convertedSummary = converter.makeHtml(article);
+        var targetDiv = document.getElementById("result");
+        targetDiv.innerHTML = convertedSummary;
+    };
+    $("#edit-title").click(function(){
+        $("#title").toggle();
+        $("#edit-title").toggle();
+        $("#edit-title-blank").toggle();
+        $("#edit-title-box").val(courseName);
+    });
+    $("#OK-title").click(function(){
+        $("#title").toggle();
+        $("#edit-title").toggle();
+        $("#edit-title-blank").toggle();
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/editCourse",
+            data : {name : $("#edit-title-box").val(), shortSummary : $("#edit-short-summary-box").val(), longSummary : $("#edit-summary-box").val()},
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus" === 0]){
+                    alert("修改成功！");
+                    location.reload(true);
+                }
+                else {
+                    alert("修改失败！");
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    });
+    $("#edit-summary").click(function(){
+        $("#article-content").toggle();
+        $("#short-summary-content").toggle();
+        $("#edit-summary-blank").toggle();
+        $("#edit-summary").toggle();
+        $("#edit-summary-box").val(summary);
+        $("#edit-short-summary-box").val(shortSummary);
+        //$("a").attr("disabled", true);
+    });
+    $("#OK-summary").click(function(){
+        $("#article-content").toggle();
+        $("#short-summary-content").toggle();
+        $("#edit-summary-blank").toggle();
+        $("#edit-summary").toggle();
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/editCourse",
+            data : {name : $("#edit-title-box").val(), shortSummary : $("#edit-short-summary-box").val(), longSummary : $("#edit-summary-box").val()},
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus" === 0]){
+                    alert("修改成功！");
+                    location.reload(true);
+                }
+                else {
+                    alert("修改失败！");
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    });
+    $("#edit-section-title").click(function(){
+        $("#title").toggle();
+        $("#edit-section-title").toggle();
+        $("#edit-section-title-blank").toggle();
+        $("#edit-section-title-box").val(sectionName);
+    });
+    $("#OK-section-title").click(function(){
+        $("#title").toggle();
+        $("#edit-section-title").toggle();
+        $("#edit-section-title-blank").toggle();
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/editSection",
+            data : {name : $("#edit-title-box").val(), sectionID : sectionID, content : $("#edit-section-box").val()},
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus" === 0]){
+                    alert("修改成功！");
+                    location.reload(true);
+                }
+                else {
+                    alert("修改失败！");
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    });
+    $("#edit-section-content").click(function(){
+        $("#article-content").toggle();
+        $("#edit-section-blank").toggle();
+        $("#edit-section-content").toggle();
+        $("#edit-section-box").val(sectionContent);
+    });
+    $("#OK-section").click(function(){
+        $("#article-content").toggle();
+        $("#edit-section-blank").toggle();
+        $("#edit-section-content").toggle();
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/editSection",
+            data : {name : $("#edit-title-box").val(), sectionID : sectionID, content : $("#edit-section-box").val()},
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus" === 0]){
+                    alert("修改成功！");
+                    location.reload(true);
+                }
+                else {
+                    alert("修改失败！");
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    });
+    function scrollToEnd(){
+        var targetStation = $(document).height() - $(window).height();
+        $(document).scrollTop(targetStation);
+    }
+</script>
+
+
+</html>
