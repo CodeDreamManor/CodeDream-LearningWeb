@@ -46,16 +46,15 @@ class Ccourse
         $courseList = array();
         $responseStatus = 0;
         foreach ($list as $key=>$value){
-            $singleCourse = array();
-            array_push($singleCourse, [
+            $singleCourse = [
                     "name"=>$value["courseName"],
                     "profile"=>$value["shortSummary"],
-                    "courseID"=>$value["ID"]]);
+                    "courseID"=>$value["ID"]];
             array_push($courseList, $singleCourse);
         }
-        return json_encode(([
+        return json_encode(array(
                 "responseStatus"=>$responseStatus,
-                "courseList"=>$courseList]));
+                "courseList"=>$courseList));
     }
 
     /**
@@ -234,6 +233,7 @@ class Ccourse
     public function selectCourse(Request $request){
         $post = $request->post();
         Session::set("courseID",$post["courseID"]);
+        return json_encode(array("responseStatus"=>0));
     }
 
     /**
@@ -259,7 +259,8 @@ class Ccourse
      * Function:    获取章节小节列表，保存小节ID数组并存入session
      */
     public function getChapter(Request $request){
-        $courseID = Session::get("courseID");
+        $courseID = 0;
+            //Session::get("courseID");
         $get = $request->get();
         $result = Chapter::where("courseID","=", $courseID)->select();
         $chapter = array();
