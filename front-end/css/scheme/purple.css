@@ -30,3 +30,6 @@ form .form-control:focus,form textarea:focus{border:1px solid #9B59B6;}
 .to-top-btn:hover{color: #9B59B6;}
 .sidebar .widget ul li a:hover {color: #9B59B6;}
 .btn:hover{color: #9B59B6;border-color: #9B59B6;}
+.deleteCoursebtn{ border-radius:4px；}
+.deleteChapterbtn{ border-radius:4px；}
+.deleteSummarybtn{ border-radius:4px；}
