@@ -28,6 +28,8 @@ Route::rule('login/box', 'index/Login/box');
 Route::rule('Personalcenter/center', 'index/Personalcenter/center');
 Route::rule('/personalcenter/getAllInfo', 'index/Personalcenter/getAllInfo');
 Route::rule('/personalcenter/modify', 'index/Personalcenter/modify');
+Route::rule('/personalcenter/deleteBlog', 'index/Personalcenter/deleteBlog');
+Route::rule('/personalcenter/concentrate', 'index/Personalcenter/concentrate');
 
 //messageboard
 //Route::rule('Cblog/index', 'index/Cblog/index');
