@@ -111,6 +111,10 @@ class Personalcenter {
             foreach ($result4 as $res4) {
                 $collectBlogResult[$i]["desc"] = $res4["content"];
                 $collectBlogResult[$i]["author"] = $res4["author"];
+
+                //added on 12/11
+                $collectBlogResult[$i]["blogID"] = $res4["blogID"];
+
                 $i++;
             }
         }
@@ -139,7 +143,7 @@ class Personalcenter {
         $newNickname = $post['nickname'];
         $newMail = $post['mail'];
 
-        $result = User::where(["ID"=>$uid])->update(["nickname"=>$newNickname, "mail"=>$newMail]);
+        $result = User::get($uid)->save(["nickname"=>$newNickname, "mail"=>$newMail]);
         if($result) {
             $responseStatus = 0;
         }
@@ -159,9 +163,31 @@ class Personalcenter {
 //                )
 //            );
 //        }
-
-
     }
+
+    /*
+     * Writer: 卢彦谚
+     * Function: 删除收藏帖子
+     * created on 12/11
+     * 测试成功
+     */
+    public function deleteBlog(Request $request) {
+        $post = $request->post();
+        $blogID = $post['blogID'];
+        $userID = Session::get('userID');
+        //$userID = "u1";
+
+        $result = Db::table('Collectblog')->where(["userID"=>$userID, "blogID"=>$blogID])->delete();
+        if($result) {
+            $responseStatus = 0;
+        }
+        else {
+            $responseStatus = 1;
+        }
+
+        return json_encode(array("responseStatus"=>$responseStatus));
+    }
+
 
     /*
      * Writer: 卢彦谚
