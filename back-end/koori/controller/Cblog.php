@@ -46,49 +46,50 @@ class Cblog {
         return view();
     }
 
-    /*created on 2018/12/7
-     *交流栈分别获取每门课程的最新三条帖子
-     * 用了Blog模型和Course模型
-     * 测试成功 12/7
-     * modified on 12/9 ：改为获取每门课程的最新三条帖子
-     */
-    public function getIndexList() {
-        $indexList = array();
+//    /*created on 2018/12/7
+//     *交流栈分别获取每门课程的最新三条帖子
+//     * 用了Blog模型和Course模型
+//     * 测试成功 12/7
+//     * modified on 12/9 ：改为获取每门课程的最新三条帖子
+//     */
+//    public function getIndexList() {
+//        $indexList = array();
+//
+//        //获取课程
+//        $courseResult = Course::select();
+//
+//        $i = 0;
+//        foreach ($courseResult as $course) {
+//            $curIndexList = &$indexList[$i];
+//            $curIndexList['courseID'] = $course['ID'];
+//            $curIndexList['courseName'] = $course['courseName'];
+//
+//            $result = Blog::where(['courseID'=>$curIndexList['courseID']])->order('time desc')->limit(0,3)->select();
+//
+//            if($result) {
+//
+//                $curIndexList['blogList'] = array();
+//
+//                $j = 0;
+//                foreach ($result as $res) {
+//                    $curblog = &$curIndexList['blogList'][$j];
+//
+//                    $curblog['blogID'] = $res['ID'];
+//                    $curblog['blogName'] = $res['title'];
+//                    $j++;
+//                }
+//            }
+//
+//            $i++;
+//        }
+//
+//        return json_encode(
+//            array(
+//                "list"=>$indexList,
+//            )
+//        );
+//    }
 
-        //获取课程
-        $courseResult = Course::select();
-
-        $i = 0;
-        foreach ($courseResult as $course) {
-            $curIndexList = &$indexList[$i];
-            $curIndexList['courseID'] = $course['ID'];
-            $curIndexList['courseName'] = $course['courseName'];
-
-            $result = Blog::where(['courseID'=>$curIndexList['courseID']])->order('time desc')->limit(0,3)->select();
-
-            if($result) {
-
-                $curIndexList['blogList'] = array();
-
-                $j = 0;
-                foreach ($result as $res) {
-                    $curblog = &$curIndexList['blogList'][$j];
-
-                    $curblog['blogID'] = $res['ID'];
-                    $curblog['blogName'] = $res['title'];
-                    $j++;
-                }
-            }
-
-            $i++;
-        }
-
-        return json_encode(
-            array(
-                "list"=>$indexList,
-            )
-        );
-    }
 
     /*created on 12/7
      *获取当前课程的所有帖子列表
@@ -100,7 +101,7 @@ class Cblog {
         $blogList = array();
 
         //找出课程对应的所有帖子
-        $blogsResult = Blog::where(['courseID'=>$courseId])->select();
+        $blogsResult = Blog::where(['courseID'=>$courseId])->order('time desc')->select();
 
         $i = 0;
         foreach ($blogsResult as $blog) {
@@ -123,6 +124,38 @@ class Cblog {
             )
         );
     }
+
+
+    /*
+     * created on 12/11
+     * 获取当前课程最新五条帖子
+     * 用了Blog模型
+     * 测试成功
+     */
+    public function getNew() {
+        $courseID = Session::get('courseID');
+//        $courseID = "1";
+        $blogList = array();
+
+        //找出课程对应的所有帖子
+        $blogsResult = Blog::where(['courseID'=>$courseID])->order('time desc')->limit(0,5)->select();
+
+        $i = 0;
+        foreach ($blogsResult as $blog) {
+            $curBlog = &$blogList[$i];
+            $curBlog['title'] = $blog['title'];
+            $curBlog['blogID'] = $blog['ID'];
+
+            $i++;
+        }
+
+        return json_encode(
+            array(
+                "blog"=>$blogList,
+            )
+        );
+    }
+
 
     /*
      * created on 12/7
