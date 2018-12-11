@@ -317,7 +317,7 @@
         $.ajax({
         type: "POST",
         url: "http://rap2api.taobao.org/app/mock/115879/course/addCourse",
-        data: {courseName : $("#new_course").val(), preCourseID : $("#pre_course").val(), shortSummary : $("#shortSummary").val(), longSummary:$("#course-long-summary").val()},
+        data: {courseName : $("#new_course").val(), preCourseID : $("#_label").val(), shortSummary : $("#course-short-summary").val(), longSummary:$("#course-long-summary").val()},
         dataType: "json",
         success: function(data){
             if(data["responseStatue"]===0){
