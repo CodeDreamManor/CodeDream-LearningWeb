@@ -302,7 +302,7 @@
                     var addSectionATemp = document.createElement("a");
                     addSectionATemp.className = "sscroll always-hide";
                     addSectionATemp.innerHTML = "新增小节";
-                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + ");";
+                    addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" + ");";
                     addSectionLiTemp.append(addSectionATemp);
                     sectionIndex.append(addSectionLiTemp);
                 }
@@ -415,7 +415,94 @@
             }
         })
     };
-    
+    $(document).ready(function(){
+        $("#_label").change(function(){
+            $("#menu-list").empty();
+            $("menu-list").innerHTML = '<li id = "index"><a href="admin.html#home">主页</a></li>' + 
+                        '<li><a id="add-chapter" class="sscroll" href="edit-course.html#add-chapter">增加章节</a></li>';
+            $("#article-content").empty();
+            $("#short-summary-content").empty();
+            $.ajax({
+                type : "POST",
+                url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+                data : {courseID : $("#_label").val()},
+                dataType : "json",
+                success : function(data){
+                    $.ajax({
+                        type : "GET",
+                        url : "http://rap2api.taobao.org/app/mock/115879/course/getChapter",
+                        data : {},
+                        dataType : "json",
+                        success : function(data){
+                            chapterArr = data["chapter"];
+                            var targetUl = document.getElementById("ul-menu");
+                            var index = document.getElementById("index");
+                            for (var i = chapterArr.length - 1; i >= 0; i--){
+                                var liTemp = document.createElement("li");
+                                var aTemp = document.createElement("a");
+                                aTemp.className = "sscroll";
+                                aTemp.innerHTML = chapterArr[i]["chapterName"];
+                                aTemp.id = "chapter" + chapterArr[i]["chapterID"];
+                                liTemp.appendChild(aTemp);
+
+                                index.after(liTemp);
+                                var cTemp = "chapter" + chapterArr[i]["chapterID"];
+
+                                var sectionIndex = document.getElementById(cTemp);;
+
+                                var sectionArr = chapterArr[i]["sectionName"];
+                                alert(sectionArr.length);
+                                for(var j = 0; j < sectionArr.length; j++){
+                                    var sectionLiTemp = document.createElement("li");
+                                    var sectionATemp = document.createElement("a");
+                                    sectionATemp.className = "sscroll always-hide";
+                                    sectionATemp.innerHTML = sectionArr[j]["sectionName"];
+                                    sectionATemp.href = "javascript:changeArticle(" + chapterArr[i]["chapterID"] + "," + sectionArr[j]["sectionID"] + ");";
+                                    sectionLiTemp.append(sectionATemp);
+                                    var sTemp = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                                    sectionLiTemp.id = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
+                                    sectionIndex.append(sectionLiTemp);
+                                }
+                                var addSectionLiTemp = document.createElement("li");
+                                var addSectionATemp = document.createElement("a");
+                                addSectionATemp.className = "sscroll always-hide";
+                                addSectionATemp.innerHTML = "新增小节";
+                                addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + "," + "0" +");";
+                                addSectionLiTemp.append(addSectionATemp);
+                                sectionIndex.append(addSectionLiTemp);
+                            }
+
+                            $.ajax({
+                                type : "GET",
+                                url : "http://rap2api.taobao.org/app/mock/115879/course/getCourse",
+                                data : {},
+                                data : "json",
+                                success : function(data){
+                                    $("#title").text(data["name"]);
+                                    courseName = data["name"];
+                                    summary = data["summary"];
+                                    shortSummary = data["shortSummary"];
+                                    var converter = new showdown.Converter();
+                                    var convertedSummary = converter.makeHtml(summary);
+                                    var targetDiv = document.getElementById("article-content");
+                                    targetDiv.innerHTML = convertedSummary;
+
+                                    var targetShortSummaryDiv = document.getElementById("short-summary-content");
+                                    targetShortSummaryDiv.innerHTML = data["shortSummary"];
+                                },
+                                error : function(data){
+
+                                }
+                            })
+                        },
+                        error : function(data){
+                            alert("error");
+                        }
+                    })
+                }
+            })
+        })
+    });
     $("#subAddChapterBtn").click(function(){
         $.ajax({
             type : "POST",
@@ -434,8 +521,9 @@
             }
         })
     });
-    function addSection(i){
+    function addSection(i, j){
         chapterID = i;
+        sectionID = j;
         $("#course").hide();
         $("#add-chapter-container").hide();
         $("#add-section-container").show();
@@ -450,7 +538,7 @@
                 alert("success!!!");
                 if (data["responseStatus"] === 0){
                     alert("OK");
-                    location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
                 }
             },
             error : function(){

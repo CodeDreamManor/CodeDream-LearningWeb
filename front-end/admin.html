@@ -208,6 +208,7 @@
 </body>
 <script src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
+    var id1;
     window.onload = function(){
         $.ajax({
             type: "GET",
@@ -222,11 +223,21 @@
                 for (var i = 0; i < courseArr.length; i++){
                     var liTemp = document.createElement("li");
                     var aTemp = document.createElement("a");
+                    var bTemp=document.createElement("input");
+                    bTemp.setAttribute("type","button");
+                    bTemp.setAttribute("value","-");
+                    bTemp.setAttribute("class", "deleteCoursebtn");
+                    bTemp.setAttribute("id",i);
+                    
+
                     aTemp.className = "sscroll always-hide";
+                    //bTemp.className="deleteCourse";
                     aTemp.innerHTML = courseArr[i]["name"];
 
                     aTemp.id = "course" + courseArr[i]["courseID"];
+                    bTemp.id=courseArr[i]["courseID"];
                     aTemp.href = "javascript: jumpToEditCoursePage(" + courseArr[i]["courseID"] + ");";
+                    aTemp.appendChild(bTemp);
                     liTemp.appendChild(aTemp);
                     courseIndex.append(liTemp);
 
@@ -258,12 +269,38 @@
                     colDivTemp.append(courseDivTemp);
                     targetCourseMapDiv.append(colDivTemp);
                 }
+                $(".deleteCoursebtn").on("click",function(){
+                    var Temp=this;
+                    var Tempid=Temp.id;
+                    $.ajax({
+                        type : "POST",
+                        url : "http://rap2api.taobao.org/app/mock/115879/course/deleteCourse",
+                        data : {courseID:Tempid },
+                        dataType : "json",
+                        success : function(data){
+                            if (data["responseStatus"] === 0)
+                            {
+                            alert("课程删除成功");
+                            $(Temp).parent().remove();
+                            }
+                        else
+                            alter("课程删除失败");
+                    
+            
+                            },
+                        error : function(){
+                            alert("error");
+                        }
+                    })
+                     });
             },
             error : function(data){
                 alert("error");
             }
         })
+
     };
+
     function convert(){
         //var text = document.getElementById("course-long-summary").value;
         var text = $("#course-long-summary").val();
@@ -304,7 +341,10 @@
             alert("error");
         }
     });
-    })
+    });
+
+
+    
 </script>
 
 </html>
