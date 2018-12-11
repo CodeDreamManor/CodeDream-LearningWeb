@@ -152,7 +152,7 @@ class Ccourse
         $section = new Section;
         // save方法第二个参数为更新条件
         $section->save([
-            'title' => $post["title"],
+            'title' => $post["name"],
             'content' => $post["content"]
         ],['ID' => $post["sectionID"]]);
 
@@ -307,7 +307,7 @@ class Ccourse
         $percent = ($place+1)/$count;
         $userID = Session::get("userID");
         $courseID = Session::get("courseID");
-        $instance = Db::table("usercourse")
+        $instance = Db::table("Usercourse")
             ->where('userID',$userID)
             ->where('courseID',$courseID)
             ->find();
@@ -317,7 +317,7 @@ class Ccourse
                 "learningProgress" => max($instance["learningProgress"], $percent)
             ]);
         }else{
-            Db::table("usercourse")->insert([
+            Db::table("Usercourse")->insert([
                 "userID" => $userID,
                 "courseID" => $courseID,
                 "learningProgress" => $percent
@@ -331,6 +331,5 @@ class Ccourse
         ];
         return json_encode($resultArray);
     }
-
 
 }
