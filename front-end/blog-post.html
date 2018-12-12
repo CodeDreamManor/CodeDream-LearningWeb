@@ -1,0 +1,520 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <link rel="shortcut icon" href="images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.png" type="image/x-icon">
+
+    <title>交流栈</title>
+	
+    <!--Library Styles-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/font-awesome.css" rel="stylesheet">
+    <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
+	
+    <!--Template Styles-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scheme/purple.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .always-hide{
+            display: none;
+        }
+        .scroll:hover .always-hide{
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" src="js/showdown-master/dist/showdown.min.js"></script>
+</head>
+
+<body data-spy="scroll">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <div id="main-wrapper">
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html#home">主页</a></li>
+                        <li><a id="courseIndex" class="scroll">课程</a></li>
+                        <li class="active"><a href="index.html#blog-front">交流栈</a></li>
+                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
+                        <li><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div id="container">
+
+            <!-- BEGIN BLOG -->
+            <section id="blog" class="blog">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div id="primary" class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN ARTICLE -->
+                                <article class="post">
+                                    <div class="post-thumb">
+                                        <a href="blog-post.html">
+                                            <img src="images/post-2.jpg" alt="Blog Post 1" />
+                                        </a>
+                                    </div>
+                                    <div class="post-title">
+                                        <h1 id="title">HTML
+                                        </h1>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span class="author" id="article-author-name">ScriptEden</span>
+                                        <span class="dates" id="article-post-time">23 july 2015</span>
+                                        <span class="comments-count" id="article-comments-count">5 Comments
+                                        </span>
+                                    </div>
+                                    <div class="post-content" id="article-content">
+                                        <p>万维网上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。</p>
+                                        <p>网页的本质就是超级文本标记语言，通过结合使用其他的Web技术 <a href="javascript:;">（如：脚本语言、公共网关接口、组件等）</a>，可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。 <</p>
+                                       
+                                    </div>
+                                </article>
+                                <!-- END ARTICLE -->
+                            </div>
+                            
+                            <!-- BLOG COMMENTS -->
+                            <div class="col-md-12">
+                                <div class="blog-comments" id = "comment-post">
+                                    <!-- BLOG REPLY -->
+                                    <h3>留言
+                                        <span>最多发表1500字</span>
+                                    </h3>
+                                    <form role="form">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <input id="name" type="text" class="form-control" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <textarea id="comment" class="form-control" rows="10" placeholder="Comment" onkeyup="value=value.substr(0,1500);"></textarea>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <p>你或许要用到
+                                            <abbr title="HyperText Markup Language">Markdown</abbr>&nbsp;tags and attributes:
+                                        </p>
+                                        <code># 一级标题 , ## 二级标题 , ### 三级标题 , #### 四级标题 , ##### 五级标题 , ###### 六级标题 , *斜体* , _斜体_ , **加粗** , __加粗__ , [显示说明](http://lianjie.net) , 分割线---分割线</code>
+                                        <br/>
+                                        <button id="submitBtn" type="submit" class="btn">发送评论</button>
+                                        
+                                    </form>
+                                    <!-- END BLOG REPLY -->
+                                    <h3>评论</h3>
+                                    <div class="blog-comment-content">
+                                        <ul class="media-list">
+                                            <li id = "comment-root"></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END BLOG COMMENTS -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 sidebar">
+
+                        <!-- /widget -->
+
+                        <div class="row widget">
+                            <div class="col-md-12">
+                                <div class="categories-widget">
+                                    <h3 class="widget-title">
+                                        标签
+                                    </h3>
+                                    <ul id="mark-list">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /widget -->
+
+                        <div class="row widget">
+                            <div class="col-md-12">
+                                <div class="recent-post-widget">
+                                    <h3 class="widget-title">
+                                        最新帖子
+                                    </h3>
+                                    <ul id = "new-blog">
+                                        <!--<li>
+                                            <a href="javascript:;">如何做网页啊？</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">美观要求太高了吧！</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">还没有做数据。</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">这就是个静态假网页……</a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /widget -->
+                    </div>
+                </div>
+            </section>
+            <!-- END BLOG -->
+            
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:;"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                        <p>
+                           我们项目组
+                        </p>                        
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+
+
+
+    <!-- Back to top -->
+    <div class="totop" id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/lib/jquery.preloader.js"></script>
+    <script src="js/lib/nivo-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.superslides.min.js"></script>
+    <script src="js/lib/smoothscroll.js"></script>
+    <!--<script src="js/lib/jquery.sudoslider.min.js"></script>-->
+    <script src="js/lib/jquery.bxslider.min.js"></script>
+    <script src="js/lib/jquery.mixitup.min.js"></script>
+    <script src="js/lib/jquery.backtotop.js"></script>
+    <script src="js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="js/main.js"></script>
+</body>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script type = "text/javascript">
+    var commentArr;
+    var article;
+    var articleContent;
+
+    window.onload = function(){
+        $.ajax({
+            type : "GET",
+            url : "http://rap2api.taobao.org/app/mock/115879/blog/getBlog",
+            data : {articleID : 1},
+            dataType : "json",
+            success : function(data){
+                //article = data["article"];
+                $("#article-content").empty();
+                articleContent = data["content"];
+                var converter = new showdown.Converter();
+                var convertedArticle = converter.makeHtml(articleContent);
+                var targetDiv = document.getElementById("article-content");
+                targetDiv.innerHTML = convertedArticle;
+                $("#article-author-name").text(data["authorName"]);
+                $("#article-post-time").text(data["time"]);
+                $("#title").text(data["title"]);
+
+                commentArr = data["comment"];
+                $("#article-comments-count").text(commentArr.length + " COMMENTS");
+                alert(commentArr[0]["nickName"]);
+                alert(commentArr.length);
+                var targetUl = document.getElementsByClassName("media-list");
+                var rootComment = document.getElementById("comment-root");
+                for (var i = commentArr.length - 1; i >= 0; i--){
+                    var liTemp = document.createElement("li");
+                    var figureTemp = document.createElement("figure");
+                    var figureATemp = document.createElement("a");
+                    var figureImageTemp = document.createElement("image");
+                    var commentDivTemp = document.createElement("div");
+                    var commentMetaDivTemp = document.createElement("div");
+                    var h4Temp = document.createElement("h4");
+                    var replySpanTemp = document.createElement("span");
+                    var timeSpanTemp = document.createElement("span");
+                    var replyDivTemp = document.createElement("div");
+                    var aTemp = document.createElement("a");
+                    var iTemp = document.createElement("i");
+                    var pTemp = document.createElement("p");
+                    liTemp.className = "media";
+                    figureTemp.className = "pull-left";
+                    figureImageTemp.className = "media-object";
+                    figureImageTemp.alt = "comment";
+                    //figureImageTemp.setAttribute("alt", "comment-1");
+                    //figureImageTemp.setAttribute("width", "80px");
+                    //figureImageTemp.setAttribute("height", "80px");
+                    commentDivTemp.className = "media-body";
+                    commentMetaDivTemp.className = "comment-meta";
+                    h4Temp.className = "media-heading";
+                    replySpanTemp.className = "in-reply";
+                    timeSpanTemp.className = "time";
+                    replyDivTemp.className = "comment-extra pull-right";
+                    iTemp.className = "fa fa-share";
+
+                    aTemp.innerHTML = "回复";
+                    aTemp.href = "javascript:reply(" + i + ");";
+                    aTemp.appendChild(iTemp);
+                    replyDivTemp.appendChild(aTemp);
+                    h4Temp.innerHTML = commentArr[i]["nickName"];
+                    replySpanTemp.innerHTML = "回复" + commentArr[i]["reply"];
+                    timeSpanTemp.innerHTML = commentArr[i]["time"];
+                    commentMetaDivTemp.append(h4Temp);
+                    commentMetaDivTemp.append(replySpanTemp);
+                    commentMetaDivTemp.append(timeSpanTemp);
+                    commentMetaDivTemp.append(replyDivTemp);
+                    pTemp.innerHTML = commentArr[i]["content"];
+                    commentDivTemp.append(commentMetaDivTemp);
+                    commentDivTemp.append(pTemp);
+
+                    //figureImageTemp.src = 'commentArr[i]["headLink"]';
+                    figureImageTemp.setAttribute("src", commentArr[i]["headLink"]);
+                    figureATemp.append(figureImageTemp);
+                    figureTemp.append(figureATemp);
+
+                    liTemp.append(figureTemp);
+                    liTemp.append(commentDivTemp);
+                    liTemp.id = "comment" + i;
+
+                    rootComment.before(liTemp);
+                };
+                $.ajax({
+                    type: "GET",
+                    url: "http://rap2api.taobao.org/app/mock/115879/course/getCourseList",
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        var value = 0;
+                        var courseIndex = document.getElementById("courseIndex");
+                        var courseSelectIndex = document.getElementById("_label");
+                        var courseArr = data["courseList"];
+                        for (var i = 0; i < courseArr.length; i++){
+                            var liTemp = document.createElement("li");
+                            var aTemp = document.createElement("a");
+                            aTemp.className = "scroll always-hide";
+                            aTemp.innerHTML = courseArr[i]["name"];
+                            aTemp.href = "javascript: jumpToCoursePage(" + courseArr[i]["courseID"] + ");";
+
+                            aTemp.id = "course" + courseArr[i]["courseID"];
+                            liTemp.appendChild(aTemp);
+                            courseIndex.append(liTemp);
+
+
+                            var markLiTemp = document.createElement("li");
+                            var markATemp = document.createElement("a");
+                            markATemp.innerHTML = courseArr[i]["name"];
+                            markATemp.href = "javascript: jumpToCourseBlogPage(" + courseArr[i]["courseID"] + ");";
+                            markLiTemp.append(markATemp);
+                            var targetMarkDiv = document.getElementById("mark-list");
+                            targetMarkDiv.append(markLiTemp);
+                        }
+                        $.ajax({
+                            type : "GET",
+                            url : "http://rap2api.taobao.org/app/mock/115879/blog/getNew",
+                            data : {},
+                            dataType : "json",
+                            success : function(data){
+                                var newBlogArr = data["blog"];
+                                var targetNewBlogLinkUl = document.getElementById("new-blog");
+                                for (i = 0; i < newBlogArr.length; i++){
+                                    var newBlogLinkATemp = document.createElement("a");
+                                    var newBlogLinkLiTemp = document.createElement("li");
+                                    newBlogLinkATemp.innerHTML = newBlogArr[i]["title"];
+                                    newBlogLinkATemp.href = "javascript: jumpToBlogPage(" + newBlogArr[i]["blogID"] + ");";
+                                    newBlogLinkLiTemp.append(newBlogLinkATemp);
+                                    targetNewBlogLinkUl.append(newBlogLinkLiTemp);
+                                }
+                            }
+                        })
+                    },
+                    error : function(data){
+                        alert("error");
+                    }
+                })
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    };
+    /*
+    function getNow(s){
+        return s < 10 ? "0" + s: s;
+    };
+    */
+    function reply(commentID){
+
+        var scrollTargetStation = $("#comment-post").offset().top;
+        //$(window).scrollTop(t);
+        $("html,body").animate({ scrollTop: t}, 1000);
+
+        window.location.hash = "#comment-post";
+        $("#submitBtn").click(function(){
+            /*
+            var myDate = new Date(); //获取时间
+            var year = myDate.getFullYear();
+            var month = myDate.getMonth() + 1;
+            var date = myDate.getDate();
+            var h = myDate.getHours();
+            var m = myDate.getMinutes();
+            var s = myDate.getSeconds();
+            var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
+            */
+
+            $.ajax({
+                type : "POST",
+                url : "http://rap2api.taobao.org/app/mock/115879/blog/replyComment",
+                data : {content : $("#comment").val(), replyID : commentID},
+                dataType : "json",
+                success : function(data){
+                    alert("success!!!");
+                    if (data["responseStatus"] === 0){
+                        alert("OK");
+                        commentID = -1;
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                    }
+                },
+                error : function(data){
+                    alert("error");
+                }
+            })
+        });
+    };
+    $("#submitBtn").click(function(){
+        /*
+        var myDate = new Date(); //获取时间
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var h = myDate.getHours();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+        var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
+        */
+
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/blog/replyComment",
+            data : {content : $("#comment").val(), replyID : commentID},
+            dataType : "json",
+            success : function(data){
+                alert("success!!!");
+                if (data["responseStatus"] === 0){
+                    alert("OK");
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    });
+    function jumpToCourseBlogPage(i){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+            data : {courseID : i},
+            dataType : "json",
+            success : function(data){
+                $(window).attr('location','./blog.html');
+            }
+        })
+    };
+    function jumpToBlogPage(i){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/blog/enter",
+            data : {blogID : i},
+            dataType : "json",
+            success : function(data){
+                if (responseStatus === 0){
+                    $(window).attr('location','./blog.html');
+                }
+            }
+        })
+    };
+    function jumpToCoursePage(i){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+            data : {courseID : i},
+            success : function(data){
+                alert("success!!!");
+                $(window).attr('location','./html-course.html');
+            },
+            error : function(data){
+                alert("error!!!");
+            }
+        })
+    };
+    /*
+    function submitComment(){
+        var myDate = new Date(); //获取时间
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var h = myDate.getHours();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+        var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
+
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/comment/reply",
+            data : {comment : $("#comment").val(), courseID : 1, replyID : "somebody", name : $("#name").val(), time : now},
+            dataType : "json",
+            success : function(data){
+                alert("success!!!");
+                if (data["responseStatus"] === 0){
+                    alert("OK");
+                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                }
+            },
+            error : function(){
+                alert("error");
+            }
+        })
+    }
+    */
+</script>
+
+</html>
