@@ -24,9 +24,18 @@
         .always-hide{
             display: none;
         }
-        .sscroll:hover .always-hide{
-            display: block;
+        .always-delete-hide{
+            display: none;
         }
+        .scroll:hover .always-hide{
+            display: inline;
+        }
+        .scroll:hover .always-delete-hide{
+            display: inline;
+            font-size: x-small;
+            color: #FF0000;
+        };
+        .deleteChapterbtn{ border-radius:4px； background-color：yellow;}
 /*<--引用样式--!>*/
     blockquote {
         border-left:#eee solid 5px;
@@ -79,7 +88,7 @@
                 <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a class="sscroll" href="admin.html#home">主页</a></li>
-                        <li><a id="courseIndex" class="sscroll" href="admin.html#services">课程</a></li>
+                        <li><a id="courseIndex" class="scroll">课程</a></li>
                         <li><a class="sscroll" href="index.html#add-courses">增加课程</a></li>
                     </ul>
                 </div>
@@ -141,6 +150,7 @@
                                 <form>
                                     <select name="pre_course" id="_label" class="form-control">
                                         <option disabled="disabled">课程名</option>
+                                        <option value="-1">无前置课程</option>
                                     </select>
                                 </form>
                                 <br/>
@@ -151,6 +161,11 @@
                                 <textarea name="course-long-summary" id="course-long-summary"  placeholder="课程介绍" class="form-control"   style="height: 300px" onkeyup="convert()"> </textarea>
                                 <br/>
                                 <div id="result" style="height:500px; background-color: white;"></div>
+                                <p>你或许要用到
+                                <abbr title="HyperText Markup Language">Markdown</abbr>&nbsp;tags and attributes:
+                                </p>
+                                <code># 一级标题 , ## 二级标题 , ### 三级标题 , #### 四级标题 , ##### 五级标题 , ###### 六级标题 , *斜体* , _斜体_ , **加粗** , __加粗__ , [显示说明](http://lianjie.net) , 分割线---分割线</code>
+                                <br/>
                                 <div>
                                     <button id="create-course" type="submit" class="btn btn-primary btn-lg" style="background-color: gray;border-color:gray;">新建课程</button>
                                 </div>
@@ -220,14 +235,22 @@
                 var courseSelectIndex = document.getElementById("_label");
                 var courseArr = data["courseList"];
                 for (var i = 0; i < courseArr.length; i++){
+                	var branch = i % 3;
                     var liTemp = document.createElement("li");
                     var aTemp = document.createElement("a");
-                    aTemp.className = "sscroll always-hide";
+                    aTemp.className = "scroll always-hide";
                     aTemp.innerHTML = courseArr[i]["name"];
+                    var deleteATemp=document.createElement("a");
+                    deleteATemp.className = "scroll always-delete-hide";
+                    deleteATemp.innerHTML = "        删除";
 
+                    deleteATemp.id=courseArr[i]["courseID"];
                     aTemp.id = "course" + courseArr[i]["courseID"];
                     aTemp.href = "javascript: jumpToEditCoursePage(" + courseArr[i]["courseID"] + ");";
+                    deleteATemp.href="javascript: DeleteCourse("+courseArr[i]["courseID"] + ");";
+                    
                     liTemp.appendChild(aTemp);
+                    liTemp.appendChild(deleteATemp);
                     courseIndex.append(liTemp);
 
                     var optionTemp = document.createElement("option");
@@ -246,7 +269,28 @@
                     colDivTemp.className = "col-md-4 col-sm-6 col-xs-12";
                     courseDivTemp.className = "service";
                     iconHolderDivTemp.className = "icon-holder";
-                    courseITemp.className = "fa fa-paper-plane";
+                    switch(branch){
+                    	case 0:
+                    	{
+                    		courseITemp.className = "fa fa-paper-plane";
+                    		break;
+                    	}
+                    	case 1:
+                    	{
+                    		courseITemp.className = "fa fa-diamond";
+                    		break;
+                    	}
+                    	case 2:
+                    	{
+                    		courseITemp.className = "fa fa-camera";
+                    		break;
+                    	}
+                    	case 3:
+                    	{
+                    		courseITemp.className = "fa fa-heartbeat";
+                    		break;
+                    	}
+                    }
                     courseHTemp.className = "heading";
                     courseDescriptionPTemp.className = "description";
                     iconHolderDivTemp.append(courseITemp);
@@ -258,12 +302,14 @@
                     colDivTemp.append(courseDivTemp);
                     targetCourseMapDiv.append(colDivTemp);
                 }
+                
             },
             error : function(data){
                 alert("error");
             }
         })
     };
+
     function convert(){
         //var text = document.getElementById("course-long-summary").value;
         var text = $("#course-long-summary").val();
@@ -274,7 +320,7 @@
     function jumpToEditCoursePage(i){
         $.ajax({
             type : "POST",
-            url : "http://rap2.taobao.org/repository/editor?id=115879&mod=177965&itf=713022",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
             data : {courseID : i},
             dataType : "json",
             success : function(data){
@@ -283,6 +329,28 @@
             }
         })
     };
+    function DeleteCourse(j){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/deleteCourse",
+            data : {courseID:j},
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus"] === 0)
+                    {
+                        alert("课程删除成功");
+                        window.location.reload(true);
+                    }
+                else
+                    {
+                        alert("课程删除失败");
+                    }
+            },
+            error : function(data){
+                alert("error");
+            }
+        });
+    }
     $("#create-course").click(function(){
         $.ajax({
         type: "POST",
@@ -297,7 +365,6 @@
             }
             else{
                 alert("课程新建失败");
-
             }
         },
         error: function(data){
@@ -305,6 +372,7 @@
         }
     });
     })
+
 </script>
 
 </html>

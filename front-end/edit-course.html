@@ -27,9 +27,17 @@
         .always-hide{
             display: none;
         }
-        .sscroll:hover .always-hide{
-            display: block;
+        .always-delete-hide{
+            display: none;
         }
+        .scroll:hover .always-hide{
+            display: inline;
+        }
+        .scroll:hover .always-delete-hide{
+            display: inline;
+            font-size: x-small;
+            color: #FF0000;
+        };
     </style>
 
     <script type="text/javascript" src="js/showdown-master/dist/showdown.min.js"></script>
@@ -263,11 +271,19 @@
                 for (var i = chapterArr.length - 1; i >= 0; i--){
                     var liTemp = document.createElement("li");
                     var aTemp = document.createElement("a");
-                    aTemp.className = "sscroll";
-                    aTemp.innerHTML = chapterArr[i]["chapterName"];
+                    var deleteATemp=document.createElement("a");
+                    aTemp.className = "scroll";
+                    deleteATemp.className="scroll always-hide";
+                    aTemp.innerHTML =  chapterArr[i]["chapterName"];
+                    deleteATemp.innerHTML = "        删除";
                     //aTemp.style = "display : block";
                     aTemp.id = "chapter" + chapterArr[i]["chapterID"];
+                    deleteATemp.id = chapterArr[i]["chapterID"];
+                    deleteATemp.href="javascript: DeleteChapter("+chapterArr[i]["chapterID"]+ ");";
+                    deleteATemp.style = "color:#FF0000;";
+                    aTemp.appendChild(deleteATemp);
                     liTemp.appendChild(aTemp);
+
                     
                     //targetUl.prepend(liTemp);
                     index.after(liTemp);
@@ -281,13 +297,18 @@
                     for(var j = 0; j < sectionArr.length; j++){
                         var sectionLiTemp = document.createElement("li");
                         var sectionATemp = document.createElement("a");
-                        sectionATemp.className = "sscroll always-hide";
+                        var sectiondeleteATemp=document.createElement("a");
+                        sectionATemp.className = "scroll always-hide";
                         sectionATemp.innerHTML = sectionArr[j]["sectionName"];
+                        sectiondeleteATemp.className = "scroll always-delete-hide";
+                        sectiondeleteATemp.innerHTML = "        删除";
+                        sectiondeleteATemp.href="javascript: DeleteSection("+sectionArr[j]["sectionID"]+ ");";
                         //sectionATemp.href = "javascript:void(0);";
                         //sectionATemp.href = "javascript:changeArticle(event);";
                         sectionATemp.href = "javascript:changeArticle(" + chapterArr[i]["chapterID"] + "," + sectionArr[j]["sectionID"] + ");";
                         //sectionATemp.onclick = "editPosition($(this));";
                         sectionLiTemp.append(sectionATemp);
+                        sectionLiTemp.append(sectiondeleteATemp);
                         var sTemp = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
                         sectionLiTemp.id = "section" + chapterArr[i]["chapterID"] + "-" + sectionArr[j]["sectionID"];
                         /*
@@ -298,14 +319,16 @@
                         sectionIndex.append(sectionLiTemp);
                         //sectionIndex = document.getElementById("section" + i + "-" + j);
                     }
+
                     var addSectionLiTemp = document.createElement("li");
                     var addSectionATemp = document.createElement("a");
-                    addSectionATemp.className = "sscroll always-hide";
+                    addSectionATemp.className = "scroll always-hide";
                     addSectionATemp.innerHTML = "新增小节";
                     addSectionATemp.href = "javascript: addSection(" + chapterArr[i]["chapterID"] + ");";
                     addSectionLiTemp.append(addSectionATemp);
                     sectionIndex.append(addSectionLiTemp);
                 }
+                
                 
                 $.ajax({
                     type : "GET",
@@ -426,7 +449,7 @@
                 alert("success!!!");
                 if (data["responseStatus"] === 0){
                     alert("OK");
-                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                    location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
                 }
             },
             error : function(){
@@ -589,6 +612,46 @@
         var targetStation = $(document).height() - $(window).height();
         $(document).scrollTop(targetStation);
     }
+    function DeleteChapter(i){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/deleteChapter",
+            data : {chapterID:i },
+            dataType : "json",
+            success : function(data){
+                if (data["responseStatus"] === 0)
+                    {
+                        alert("章节删除成功");
+                        location.reload(true);
+                    }
+                else
+                    alter("章节删除失败");
+                    },
+            error : function(){
+                alert("error");
+                }
+            })
+    };
+    function DeleteSection(i){
+        $.ajax({
+        type : "POST",
+        url : "http://rap2api.taobao.org/app/mock/115879/course/deleteSection",
+        data : {sectionID:i },
+        dataType : "json",
+        success : function(data){
+                if (data["responseStatus"] === 0)
+                    {
+                        alert("小节删除成功");
+                        location.reload(true);
+                    }
+                else
+                    alter("小节删除失败");
+            },
+        error : function(){
+                alert("error");
+            }
+        })
+         };
 </script>
 
 

@@ -1,0 +1,669 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <link rel="shortcut icon" href="images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.png" type="image/x-icon">
+
+    <title>交流栈</title>
+	
+    <!--Library Styles-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/font-awesome.css" rel="stylesheet">
+    <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
+	<!--插页-->
+    <script typet="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><!--jquery.js-->
+    <script src="js/paging.js" type="text/javascript" charset="utf-8"></script>
+    <!--Template Styles-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scheme/purple.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .always-hide{
+            display: none;
+        }
+        .scroll:hover .always-hide{
+            display: block;
+        }
+        .carousel-control.left {
+
+background-image:none;
+
+background-repeat: repeat-x;
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+
+}
+
+.carousel-control.right {
+
+left: auto; right: 0;
+
+background-image:none;
+
+background-repeat: repeat-x;
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+
+} 
+.pagenation {
+    padding: 40px 30px 60px 0;
+    color: #666;
+    -webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;}
+
+    .pagenation .pagenum {
+        float: left;
+        min-width: 30px;
+        padding: 3px 5px;
+        text-align: center;
+        margin-right: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 3px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+    }
+
+        .pagenation .pagenum.indexpage, .pagenation .pagenum.lastpage, .pagenation .pagenum.nextpage {
+            background: rgba(255,255,255,0);
+            color: #d9cfce;
+        }
+
+            .pagenation .pagenum.indexpage.active, .pagenation .pagenum.lastpage.active, .pagenation .pagenum.nextpage.active {
+                background-color: #f5f5f5;
+                color: #999;
+            }
+
+                .pagenation .pagenum.indexpage.active a, .pagenation .pagenum.lastpage.active a, .pagenation .pagenum.nextpage.active a {
+                    color: #999;
+                }
+
+        .pagenation .pagenum.pagetext, .pagenation .pagenum.totalpage {
+            border-radius: 0px;
+            background: rgba(255,255,255,0);
+            border: none;
+        }
+
+        .pagenation .pagenum a {
+            color: #999;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+    .pagenation .pageswiperbox {
+        min-width: 35px;
+        max-width: 175px;
+        overflow: hidden;
+        word-break: keep-all;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        float: left;
+    }
+
+    .pagenation .pageswiper {
+        width: auto;
+    }
+
+        .pagenation .pageswiper .pagenum {
+            display: inline-block;
+            float: none;
+        }
+
+    .pagenation .pagenum.curpage {
+        background: rgba(255,255,255,0);
+        color: #FE7200;
+        border: none;
+    }
+
+        .pagenation .pagenum.curpage a {
+            color: #FE7200;
+            display: block;
+            width: 100%;
+        }
+
+    .pagenation .pageinput {
+        text-align: center;
+        border: 1px solid #e5e5e5;
+        width: 40px;
+        margin: 0 3px;
+        line-height: 17px;
+        box-sizing: border-box;
+        vertical-align: top;
+    }
+
+    .pagenation .pagesubbtn {
+        background: rgba(255,255,255,0);
+    }
+
+        .pagenation .pagesubbtn a {
+            color: #d9cfce;
+        }
+
+        .pagenation .pagesubbtn.active {
+            background: #f5f5f5;
+        }
+
+        .pagenation .pagesubbtn a {
+            color: #999;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    
+    <div id="main-wrapper">
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html#home">主页</a></li>
+                        <li><a id="courseIndex" class="scroll">课程</a></li>
+                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
+                        <li><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div id="container">
+
+            <!-- BEGIN BLOG -->
+            <section id="blog" class="blog" style="background-color:#E8E8E8">
+                <div class="row">
+                    <div class="col-md-9" align="left">
+                       <!-- <ul id="pageBox">
+                         <li class='list'>1</li>
+                        <li class='list'>2</li>
+                        <li class='list'>3</li>
+                        <li class='list'>4</li>
+                        <li class='list'>5</li>
+        </ul>-->
+                                <!-- BEGIN ARTICLE -->
+                                <div id="myCarousel" class="carousel slide" style="float: bottom" >
+    <!-- 轮播（Carousel）指标 
+                                        <ol id="car" class="carousel-indicators" style="top:920px">
+                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                            
+                                        </ol>   -->
+    <!-- 轮播（Carousel）项目 -->
+                        <div id="carDiv" class="carousel-inner" >
+                            <div class="item active container"  >
+                                
+                                <div id="tryRow" class="col-md-5 col-md-offset-1" >
+                                   
+                                </div>
+                            </div>
+                            
+                            
+        
+                    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+                                
+                                <!-- END ARTICLE -->
+                                <!-- BEGIN ARTICLE -->
+                                
+                                <!-- END ARTICLE -->
+                                <!-- BEGIN ARTICLE -->
+                                
+                                <!-- END ARTICLE -->
+                            
+                    </div>
+                    <div class="col-md-3 sidebar">
+
+                        <!-- /widget -->
+
+                        <div class="row widget">
+                            <div class="col-md-12">
+                                <div class="categories-widget">
+                                    <h3 class="widget-title">
+                                        标签
+                                    </h3>
+                                    <ul id="_label">
+                                        <!--
+                                        <li>
+                                            <a href="javascript:;">HTML</a> (5)
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">CSS</a> (2)
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">JS</a> (5)
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">PHP</a> (12)
+                                        </li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /widget -->
+
+                        <div class="row widget">
+                            <div class="col-md-12">
+                                <div class="recent-post-widget">
+                                    <h3 class="widget-title">
+                                        最新帖子
+                                    </h3>
+                                    <ul id="new-blog">
+                                        <!--
+                                        <li>
+                                            <a href="javascript:;">如何做网页啊？</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">美观要求太高了吧！</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">还没有做数据。</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">这就是个静态假网页……</a>
+                                        </li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /widget -->
+                    </div>
+                </div>
+            </section>
+            <!-- END BLOG -->
+
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:;"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                        <p>
+                            我们项目组
+                        </p>                        
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+
+
+    <!-- Back to top -->
+    <div class="totop" id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/lib/jquery.preloader.js"></script>
+    <script src="js/lib/nivo-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.superslides.min.js"></script>
+    <script src="js/lib/smoothscroll.js"></script>
+    <script src="js/lib/jquery.sudoslider.min.js"></script>
+    <script src="js/lib/jquery.bxslider.min.js"></script>
+    <script src="js/lib/jquery.mixitup.min.js"></script>
+    <script src="js/lib/jquery.backtotop.js"></script>
+    <script src="js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="js/main.js"></script>
+</body>
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+  
+    
+
+    window.onload = function(){
+         $.ajax({
+                type: "GET",
+                url: "http://rap2api.taobao.org/app/mock/115879/blog/getBlogList",
+                data: {},
+                dataType:'json',
+                success: function (data) {
+                    //alert("success");
+                    //document.getElementById("li1").style.display="block";
+                    //var data = JSON.parse(data);
+                    var articles=data["blog"];
+                    var rowPar= document.getElementById("tryRow");
+                   
+                   var pageNum=0;
+                   //var carol=document.getElementById("car");
+                    for(var i = articles.length-1;i>=0;i--){
+                            var chi=document.createElement("article");
+                            chi.className="post";
+
+                            var headDiv=document.createElement("div");
+                            headDiv.className="post-title";
+                            var headA=document.createElement("a");
+                            //hre.href="blog-post.html";
+                            //headA.id=articles[i]["blogID"];
+                            headA.innerHTML=articles[i]["title"];
+                            headA.href="javascript:postIdFunction("+articles[i]["blogID"]+");";
+                            var h=document.createElement("h1");
+
+                            //h.innerHTML=articles[i]["title"];
+                            h.appendChild(headA);
+                            headDiv.appendChild(h);
+
+                            var infoDiv=document.createElement("div");
+                            infoDiv.className="post-meta";
+                            var author=document.createElement("span");
+                            author.className="author";
+                            author.innerHTML=articles[i]["authorName"];
+                            var date=document.createElement("span");
+                            date.className="dates";
+                            date.innerHTML=articles[i]["time"];
+                            var commentcount=document.createElement("span");
+                            commentcount.className="comments-count";
+                            commentcount.innerHTML=articles[i]["commentCount"];
+                            infoDiv.appendChild(author);
+                            infoDiv.appendChild(date);
+                            infoDiv.appendChild(commentcount);
+
+                            var commentDiv=document.createElement("div");
+                            commentDiv.className="post-content";
+                            var p=document.createElement("p");
+                            p.innerHTML=articles[i]["comment"];
+                            commentDiv.appendChild(p);
+
+                            chi.appendChild(headDiv);
+                            chi.appendChild(infoDiv);
+                            chi.appendChild(commentDiv);
+
+                             if((articles.length-1-i)%2!=0){ //不用新建rowdiv
+                           // var y=document.getElementById("tryRow");
+                             
+                            rowPar.appendChild(chi);
+                        }
+                        else if((articles.length-1-i)==0)//第一个留言
+                        {
+                            rowPar.appendChild(chi);
+                        }
+                        else{//要创建新的rowdiv
+                            var carPar=document.getElementById("carDiv");
+                            var itemPar=document.createElement("div");
+                            itemPar.className="item container";
+                            rowPar=document.createElement("div");
+                            rowPar.className="col-md-5 col-md-offset-1";
+                            rowPar.appendChild(chi);
+                            itemPar.appendChild(rowPar);
+                            carPar.appendChild(itemPar);
+                            pageNum++;
+                            //document.getElementById("li"+pageNum).style.display="block";
+                            //document.getElementById("li"+pageNum).style.display="block";
+                            //alert("li"+pageNum);
+                            //carli.style.display="block";
+                            //carli.id="li"+pageNum;
+                            //carol.appendChild(carli);
+                            //var carli=document.createElement("li");
+                            //carli.attr("data-target","#myCarousel");
+                            //carli.attr("data-slide-to",pageNum);
+                            //carol.appendChild(carli);
+                            //carli.data-target="#myCarousel";
+                            //carli.data.slide-to=pageNum;
+                        }
+                    }
+                    $.ajax({
+                        type: "GET",
+                        url: "http://rap2api.taobao.org/app/mock/115879/blog/getNew",
+                        data: {},
+                        dataType: 'json',
+                        success: function(data){
+
+                            var  blogs=data["blog"];
+                            alert(blogs[0]["blogID"]);
+                            var parent=document.getElementById("new-blog");
+                            for (var i = blogs.length - 1; i >= 0; i--) {
+
+                                var l=document.createElement("li");
+                                var a=document.createElement("a");
+                                a.innerHTML=blogs[i]["title"];
+                                a.href="javascript:postIdFunction("+blogs[i]["blogID"]+");";
+                                l.appendChild(a);
+                                parent.appendChild(l);
+                            }
+                            $.ajax({
+                                type: "GET",
+                                url: "http://rap2api.taobao.org/app/mock/115879/course/getCourseList",
+                                data: {},
+                                dataType: 'json',
+                                success: function(data){
+
+                                    var  courseArr=data["courseList"];
+                                    alert(courseArr[0]["courseID"]);
+                                    var parent=document.getElementById("_label");
+                                    for (var i = 0; i < courseArr.length; i++) {
+
+                                        var l=document.createElement("li");
+                                        var a=document.createElement("a");
+                                        a.innerHTML=courseArr[i]["name"];
+                                        a.href="javascript:postCourseIdFunction("+courseArr[i]["courseID"]+");";
+                                        l.appendChild(a);
+                                        parent.appendChild(l);
+
+                                        var liTemp = document.createElement("li");
+                                        var aTemp = document.createElement("a");
+                                        aTemp.className = "scroll always-hide";
+                                        aTemp.innerHTML = courseArr[i]["name"];
+                                        aTemp.href = "javascript: jumpToCoursePage(" + courseArr[i]["courseID"] + ");";
+                                        liTemp.appendChild(aTemp);
+                                        courseIndex.append(liTemp);
+                                    }
+                                },
+                                error: function(data){
+                                    alert("course label error");
+                                }
+                            });
+                        },
+                        error: function(data){
+                            alert("new-blog error");
+                        }
+                    });                       
+                },
+                error: function (data){
+                    //document.getElementById('registerUserName').value = "error";
+                    // console.log(jqXHR);
+                    // console.log(textStatus);
+                    // console.log(errorThrown);
+                    alert("error");
+                }
+            });
+
+
+
+};
+function postCourseIdFunction(id){
+    var courseID=id;
+ $.ajax({
+        type: "POST",
+        url: "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+        data: {"courseID":courseID},
+        dataType: 'json',
+        success: function(data){
+            if(data["responseStatus"]===0){
+                alert("成功传入courseID");
+                //document.getElementById("_")
+                 window.location.href="blog.html";
+            }
+            else{
+                alert("传入courseID失败");
+            }
+        },
+        error: function(data){
+            alert("课程标签error");
+        }
+    });
+
+};
+function postIdFunction(id){
+    var blogID=id;
+    $.ajax({
+        type: "POST",
+        url: "http://rap2api.taobao.org/app/mock/115879/blog/enter",
+        data: {"blogID":blogID},
+        dataType: 'json',
+        success: function(data){
+            if(data["responseStatus"]===0){
+                alert("成功传入blogID");
+                //document.getElementById("_")
+                 window.location.href="blog-post.html";
+            }
+            else{
+                alert("传入blogID失败");
+            }
+        },
+        error: function(data){
+            alert("error");
+        }
+    });
+
+};
+function jumpToCoursePage(i){
+        $.ajax({
+            type : "POST",
+            url : "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
+            data : {courseID : i},
+            success : function(data){
+                alert("success!!!");
+                $(window).attr('location','./html-course.html');
+            },
+            error : function(data){
+                alert("error!!!");
+            }
+        })
+    };
+var options = {
+                list:".list",//列表标识
+                currentPage:1,//初始页（选传，默认1）
+                pageSize:3,//每页列表数
+                listTotal:31,//列表总数（选传），不传为list总数
+                callback:function(currentPage){//翻页回调（可填，可做ajax请求）,不传为纯html切换
+                    loadData(ajaxDemo(currentPage))
+                }
+            }
+
+            $("#pageBox").paging(options)
+            function ajaxDemo(page,pageSize){
+                 $.ajax({
+                type: "GET",
+                url: "http://rap2api.taobao.org/app/mock/115879/blog/getBlogList",
+                data: {},
+                dataType:'json',
+                success: function (data) {
+                    alert("success");
+                    //document.getElementById("li1").style.display="block";
+                    //var data = JSON.parse(data);
+                    var articles=data["blog"];
+                if(!pageSize)var pageSize = 3;
+                var data1 = {},arr=[];
+                var pageIndex=1;
+                for(var i = 0;i<articles.length;i++){
+                    arr.push(articles[i]);
+                    if((i+1)%3==0){
+                        data1[pageIndex]=arr;
+                        arr=[];
+                        pageIndex++;
+                    }
+                }
+                return data[page];
+            }, 
+            error: function (data){
+                
+                    alert("error");
+                }
+            });
+}
+            function loadData(data){
+                console.log("callback")
+                $("#pageBox").empty();
+                for(var i = 0;i<data.length;i++){
+                        var chi=document.createElement("article");
+                            chi.className="post";
+
+                            var headDiv=document.createElement("div");
+                            headDiv.className="post-title";
+                            var headA=document.createElement("a");
+                            
+                            headA.innerHTML=data[i]["title"];
+                            headA.href="javascript:postIdFunction("+data[i]["blogID"]+");";
+                            var h=document.createElement("h1");
+                            h.appendChild(headA);
+                            headDiv.appendChild(h);
+
+                            var infoDiv=document.createElement("div");
+                            infoDiv.className="post-meta";
+                            var author=document.createElement("span");
+                            author.className="author";
+                            author.innerHTML=data[i]["authorName"];
+                            var date=document.createElement("span");
+                            date.className="dates";
+                            date.innerHTML=data[i]["time"];
+                            var commentcount=document.createElement("span");
+                            commentcount.className="comments-count";
+                            commentcount.innerHTML=data[i]["commentCount"];
+                            infoDiv.appendChild(author);
+                            infoDiv.appendChild(date);
+                            infoDiv.appendChild(commentcount);
+
+                            var commentDiv=document.createElement("div");
+                            commentDiv.className="post-content";
+                            var p=document.createElement("p");
+                            p.innerHTML=data[i]["comment"];
+                            commentDiv.appendChild(p);
+
+                            chi.appendChild(headDiv);
+                            chi.appendChild(infoDiv);
+                            chi.appendChild(commentDiv);
+                    $("#pageBox").appendChild(chi);
+                }
+            }
+</script>
+</html>
