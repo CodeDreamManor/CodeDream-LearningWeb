@@ -112,19 +112,9 @@
                                     <form role="form">
                                         <div class="form-group row">
                                             <div class="col-md-8">
-                                                <input id="name" type="text" class="form-control" placeholder="Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-8">
                                                 <textarea id="comment" class="form-control" rows="10" placeholder="Comment" onkeyup="value=value.substr(0,1500);"></textarea>
                                             </div>
                                         </div>
-                                        <br/>
-                                        <p>你或许要用到
-                                            <abbr title="HyperText Markup Language">Markdown</abbr>&nbsp;tags and attributes:
-                                        </p>
-                                        <code># 一级标题 , ## 二级标题 , ### 三级标题 , #### 四级标题 , ##### 五级标题 , ###### 六级标题 , *斜体* , _斜体_ , **加粗** , __加粗__ , [显示说明](http://lianjie.net) , 分割线---分割线</code>
                                         <br/>
                                         <button id="submitBtn" type="submit" class="btn">发送评论</button>
                                         
@@ -137,6 +127,21 @@
                                             
                                         </ul>
                                     </div>
+                                </div>
+                                <div class="blog-comments" id = "reply-comment-post" style="display:none;">
+                                	<h3>留言
+                                        <span>最多发表1500字</span>
+                                    </h3>
+                                    <form role="form">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <textarea id="reply-comment" class="form-control" rows="10" placeholder="Comment" onkeyup="value=value.substr(0,1500);"></textarea>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <button id="reply-submitBtn" type="submit" class="btn">发送评论</button>
+                                        
+                                    </form>
                                 </div>
                             </div>
                             <!-- END BLOG COMMENTS -->
@@ -235,6 +240,7 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script type = "text/javascript">
     var commentArr;
+    var commentID = -1;
     var article;
     var articleContent;
 
@@ -382,35 +388,20 @@
     };
     */
     function reply(commentID){
+    	$("#comment-post").toggle();
+    	$("#reply-comment-post").toggle();
 
-        var scrollTargetStation = $("#comment-post").offset().top;
-        //$(window).scrollTop(t);
-        $("html,body").animate({ scrollTop: t}, 1000);
-
-        window.location.hash = "#comment-post";
-        $("#submitBtn").click(function(){
-            /*
-            var myDate = new Date(); //获取时间
-            var year = myDate.getFullYear();
-            var month = myDate.getMonth() + 1;
-            var date = myDate.getDate();
-            var h = myDate.getHours();
-            var m = myDate.getMinutes();
-            var s = myDate.getSeconds();
-            var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
-            */
-
+        $("#reply-submitBtn").click(function(){
             $.ajax({
                 type : "POST",
                 url : "http://rap2api.taobao.org/app/mock/115879/blog/replyComment",
-                data : {content : $("#comment").val(), replyID : commentID},
+                data : {content : $("#reply-comment").val(), replyID : commentID},
                 dataType : "json",
                 success : function(data){
                     alert("success!!!");
                     if (data["responseStatus"] === 0){
                         alert("OK");
-                        commentID = -1;
-                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                        location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
                     }
                 },
                 error : function(data){
@@ -420,27 +411,16 @@
         });
     };
     $("#submitBtn").click(function(){
-        /*
-        var myDate = new Date(); //获取时间
-        var year = myDate.getFullYear();
-        var month = myDate.getMonth() + 1;
-        var date = myDate.getDate();
-        var h = myDate.getHours();
-        var m = myDate.getMinutes();
-        var s = myDate.getSeconds();
-        var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
-        */
-
         $.ajax({
             type : "POST",
             url : "http://rap2api.taobao.org/app/mock/115879/blog/replyComment",
-            data : {content : $("#comment").val(), replyID : commentID},
+            data : {content : $("#comment").val(), replyID : -1},
             dataType : "json",
             success : function(data){
                 alert("success!!!");
                 if (data["responseStatus"] === 0){
                     alert("OK");
-                    //location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
+                    location.reload(true); //以GET方式从服务器获取最新的页面，刷新当前页面
                 }
             },
             error : function(data){
