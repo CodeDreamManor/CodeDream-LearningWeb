@@ -47,7 +47,7 @@ class Login
         $errorMessage = "";
         if($result){
             if($result["password"]==$post["password"]){
-                Session::set("userID",$result["id"]);
+                Session::set("userID",$result["ID"]);
                 Session::set("mail",$result["mail"]);
                 Session::set("nickname",$result["nickname"]);
                 Session::set("startTime",date("H:i:s"));
