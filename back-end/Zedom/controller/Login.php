@@ -44,18 +44,6 @@ class Login
     public function login(Request $request){
         $post = $request->post();
 
-        $result = Db::table("sysmanager")->where(["mail"=>$post["mail"]])->find();
-        if($result){
-            json_encode(array("responseStatus"=>2));
-            Session::set("identity",2);
-        }
-
-        $result = Db::table("busmanager")->where(["mail"=>$post["mail"]])->find();
-        if($result){
-            json_encode(array("responseStatus"=>2));
-            Session::set("identity",2);
-        }
-
         $result = User::where(["mail"=>$post["mail"]])->find();
         $response = 0;
         $errorMessage = "";
@@ -65,7 +53,7 @@ class Login
                 Session::set("mail",$result["mail"]);
                 Session::set("nickname",$result["nickname"]);
                 Session::set("startTime",date("H:i:s"));
-                Session::set("identity",0);
+                Session::set("identity",$result["identity"]);
             }else{
                 $response = -1;
                 $errorMessage = "密码错误";
@@ -105,7 +93,8 @@ class Login
                 "nickname" => $post["nickname"],
                 "password" => $post["password"],
                 "mail" => $post["mail"],
-                "registrationDate" => date("Y-m-d")
+                "registrationDate" => date("Y-m-d"),
+                "identity" => 0,
             ]);
             if($effect==1)
                 $response = array("responseStatus"=>0);

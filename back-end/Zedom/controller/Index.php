@@ -9,7 +9,6 @@ class Index
 {
     public function index()
     {
-        Session::set("identity",1);
         return view();
     }
 }
