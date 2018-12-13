@@ -166,6 +166,14 @@ class Cblog {
         $post = $request->post();
         $blogID = $post['blogID'];
         Session::set('blogID', $blogID);
+
+        //added on 12/13
+        if(Session::get('blogID')) {
+            return json_encode(array("responseStatus"=>0));
+        }
+        else {
+            return json_encode(array("responseStatus"=>1));
+        }
     }
 
     /*
