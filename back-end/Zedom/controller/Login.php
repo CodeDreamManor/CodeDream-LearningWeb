@@ -144,7 +144,10 @@ class Login
      */
     public function judge(Request $request){
         $result = Session::get("identity");
-        return json_encode(["responseStatus"=>$result]);
+        if(is_null($result))
+            return json_encode(["responseStatus"=>1]);
+        else
+            return json_encode(["responseStatus"=>$result]);
     }
 }
 

@@ -38,6 +38,15 @@ class Ccourse
 
     /**
      * Writer:      吴潘安
+     * Date:        2018/12/13
+     * Function:    返回管理员管理课程页面
+     */
+    public function managecourse(){
+        return view();
+    }
+
+    /**
+     * Writer:      吴潘安
      * Date:        2018/12/7
      * Function:    获取所有课程的列表
      */
