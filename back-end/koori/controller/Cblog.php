@@ -161,6 +161,7 @@ class Cblog {
      * created on 12/7
      * 点进blog前将blogID传给Session
      * 待测试
+     * updated on 12/13 : 增加了返回状态
      */
     public function enter(Request $request) {
         $post = $request->post();
@@ -181,6 +182,7 @@ class Cblog {
      * 获取帖子内容和对应留言
      * 用了Message模型、User模型、Blog模型和Collectblog表
      * 测试成功 12/9
+     * updated on 12/13: 删除了该用户没有收藏帖子时的内容
      */
     public function getBlog() {
         $blogID = Session::get('blogID');
@@ -249,11 +251,6 @@ class Cblog {
         $result3 = Db::table('Collectblog')->where(['userID'=>$userID, 'blogID'=>$blogID])->find();
         if($result3) {
             $collected = 1;
-        }
-        else {
-            return json_encode(
-                array('responseStatus'=>1)
-            );
         }
 
         return json_encode(
@@ -374,20 +371,26 @@ class Cblog {
      * 收藏帖子
      *用了Collectblog表
      * 测试成功
+     * updated on 12/13: 增加了用户未登录的情况
      */
     public function collect() {
         $userID = Session::get('userID');
         $blogID = Session::get('blogID');
 //        $userID = "u2";
 //        $blogID = 4;
-
-        $result = Db::table('Collectblog')->insert(["userID"=>$userID, "blogID"=>$blogID]);
-        if($result) {
-            $responseStatus = 0;
+        if($userID) {
+            $result = Db::table('Collectblog')->insert(["userID"=>$userID, "blogID"=>$blogID]);
+            if($result) {
+                $responseStatus = 0;
+            }
+            else {
+                $responseStatus = 2;
+            }
         }
         else {
             $responseStatus = 1;
         }
+
 
         return json_encode(array("responseStatus"=>$responseStatus));
     }
