@@ -183,6 +183,7 @@ class Cblog {
      * 用了Message模型、User模型、Blog模型和Collectblog表
      * 测试成功 12/9
      * updated on 12/13: 删除了该用户没有收藏帖子时的内容
+     * updated on 12/13: reply改成replyID，添加了replyName
      */
     public function getBlog() {
         $blogID = Session::get('blogID');
@@ -206,10 +207,13 @@ class Cblog {
                 $comment[$i]['content'] = $res['content'];
 
                 if($res['replyID'] == "") {
-                    $comment[$i]['reply'] = -1;
+                    $comment[$i]['replyID'] = -1;
+                    $comment[$i]['replyName'] = "";
                 }
                 else {
-                    $comment[$i]['reply'] = $res['replyID'];
+                    $comment[$i]['replyID'] = $res['replyID'];
+                    $replyNameResult = Message::where(["ID"=>$res['replyID']])->find();
+                    $comment[$i]['replyName'] = $replyNameResult['nickname'];
                 }
 
                 $commentUser = Db::table('Usermessage')->where(['messageID'=>$res['ID']])->find();
