@@ -30,6 +30,7 @@ class Personalcenter {
      * Writer: 卢彦谚
      * updated on 12/7
      * Function: 获取用户信息
+     * updated on 12/14: 获取用户收藏帖子的内容改成40个字
      */
     public function getAllInfo() {
         $userID = Session::get("id");
@@ -109,7 +110,10 @@ class Personalcenter {
         if($result4) {
             $i = 0;
             foreach ($result4 as $res4) {
-                $collectBlogResult[$i]["desc"] = $res4["content"];
+                //updated on 12/14
+                $content = $res4['content'];
+                $collectBlogResult[$i]["desc"] = mb_substr($content,0,40,'utf-8')."……";
+
                 $collectBlogResult[$i]["author"] = $res4["author"];
 
                 //added on 12/11
