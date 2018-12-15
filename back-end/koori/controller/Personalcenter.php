@@ -44,7 +44,7 @@ class Personalcenter {
         }
 
         //用户所学课程信息
-        $result2 = Db::table('Usercourse')->join('course',['Usercourse.courseID=course.id'])->where(['userID'=>$userID])->select();
+        $result2 = Db::table('usercourse')->join('course',['usercourse.courseID=course.id'])->where(['userID'=>$userID])->select();
         $courseResult = array();
         if($result2) {
             $i = 0;
@@ -105,7 +105,7 @@ class Personalcenter {
         */
 
         //updated on 12/7
-        $result4 = Db::table('Collectblog')->join('Blog',['Collectblog.blogID=Blog.ID'])->where(["userID"=>$userID])->select();
+        $result4 = Db::table('collectblog')->join('blog',['collectblog.blogID=blog.ID'])->where(["userID"=>$userID])->select();
         $collectBlogResult = array();
         if($result4) {
             $i = 0;
