@@ -188,6 +188,7 @@ class Cblog {
      * 测试成功 12/9
      * updated on 12/13: 删除了该用户没有收藏帖子时的内容
      * updated on 12/13: reply改成replyID，添加了replyName
+     * updated on 12/15: 改了replyID
      */
     public function getBlog() {
         $blogID = Session::get('blogID');
@@ -210,17 +211,16 @@ class Cblog {
 
                 $comment[$i]['content'] = $res['content'];
 
-                if($res['replyID'] == "") {
-                    $comment[$i]['replyID'] = -1;
+                $comment[$i]['replyID'] = $res['replyID'];
+                $replyNameResult = Message::where(["ID"=>$res['replyID']])->find();
+                if($res['replyID'] == -1) {
                     $comment[$i]['replyName'] = "";
                 }
                 else {
-                    $comment[$i]['replyID'] = $res['replyID'];
-                    $replyNameResult = Message::where(["ID"=>$res['replyID']])->find();
                     $comment[$i]['replyName'] = $replyNameResult['nickname'];
                 }
 
-                $commentUser = Db::table('Usermessage')->where(['messageID'=>$res['ID']])->find();
+                $commentUser = Db::table('usermessage')->where(['messageID'=>$res['ID']])->find();
                 $commentUserId = $commentUser['userID'];
                 if($commentUserId == $userID) {
                     $comment[$i]['editable'] = true;
@@ -256,7 +256,7 @@ class Cblog {
         }
 
         $collected = 0;
-        $result3 = Db::table('Collectblog')->where(['userID'=>$userID, 'blogID'=>$blogID])->find();
+        $result3 = Db::table('collectblog')->where(['userID'=>$userID, 'blogID'=>$blogID])->find();
         if($result3) {
             $collected = 1;
         }
@@ -307,7 +307,7 @@ class Cblog {
             ));
         }
 
-        $result2 = Db::table('Userblog')->insert(['userID'=>$userID, 'blogID'=>$blogID]);
+        $result2 = Db::table('userblog')->insert(['userID'=>$userID, 'blogID'=>$blogID]);
         if($result2) {
         }
         else {
@@ -387,7 +387,7 @@ class Cblog {
 //        $userID = "u2";
 //        $blogID = 4;
         if($userID) {
-            $result = Db::table('Collectblog')->insert(["userID"=>$userID, "blogID"=>$blogID]);
+            $result = Db::table('collectblog')->insert(["userID"=>$userID, "blogID"=>$blogID]);
             if($result) {
                 $responseStatus = 0;
             }
@@ -417,7 +417,7 @@ class Cblog {
 //        $userID = "u2";
 //        $blogID = 3;
 
-        $result = Db::table('Collectblog')->where(["userID"=>$userID, "blogID"=>$blogID])->delete();
+        $result = Db::table('collectblog')->where(["userID"=>$userID, "blogID"=>$blogID])->delete();
         if($result) {
             $responseStatus = 0;
         }
@@ -433,17 +433,14 @@ class Cblog {
      * created on 12/9
      * 发布留言
      * 用了Message模型和Usermessage表
-     * ！如果不是回复留言的留言，传过来的“-1”需要为字符串，表里的replyID是null
      * nickname要存到表中
      * 测试成功
+     * updated on 12/15: 改了replyID
      */
     public function replyComment(Request $request) {
         $post = $request->post();
         $content = $post['content'];
         $replyID = $post['replyID']; //-1代表不是回复留言的留言
-        if($replyID == "-1") {
-            $replyID = null;
-        }
         $time = date('Y-m-d H:i:s');
 
         $userID = Session::get('userID');
@@ -462,7 +459,7 @@ class Cblog {
             return json_encode(array("responseStatus"=>1));
         }
 
-        $result2 = Db::table('Usermessage')->insert(["userID"=>$userID, "messageID"=>$messageID]);
+        $result2 = Db::table('usermessage')->insert(["userID"=>$userID, "messageID"=>$messageID]);
         if($result2) {
         }
         else {
