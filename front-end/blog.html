@@ -15,14 +15,12 @@
     <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
     <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
 	<!--插页-->
-    <script typet="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><!--jquery.js-->
-    <script src="js/paging.js" type="text/javascript" charset="utf-8"></script>
+    
     <!--Template Styles-->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/scheme/purple.css" rel="stylesheet">
     <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
@@ -193,8 +191,8 @@ user-select:none;}
                     <ul class="nav navbar-nav">
                         <li><a href="index.html#home">主页</a></li>
                         <li><a id="courseIndex" class="scroll">课程</a></li>
-                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
-                        <li><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
+                        <li id="login_register"><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
+                        <li id="_post"><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -358,10 +356,31 @@ user-select:none;}
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
-  
-    
-
     window.onload = function(){
+        $.ajax({
+            type: "GET",
+            url: "http://rap2api.taobao.org/app/mock/115879/login/judge",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                
+                if(data["responseStatus"]===1)
+                {
+                    alert("游客浏览");
+                    x=document.getElementById("_post");
+                    x.style.display="none";
+                }
+                else if (data["responseStatus"]===0) {
+                    alert("用户已登录");
+                    x=document.getElementById("login_register");
+                    x.style.display="none";
+                }
+                
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
          $.ajax({
                 type: "GET",
                 url: "http://rap2api.taobao.org/app/mock/115879/blog/getBlogList",
@@ -374,7 +393,7 @@ user-select:none;}
                     var articles=data["blog"];
                     var rowPar= document.getElementById("tryRow");
                    
-                   var pageNum=0;
+                    var pageNum=0;
                    //var carol=document.getElementById("car");
                     for(var i = articles.length-1;i>=0;i--){
                             var chi=document.createElement("article");
@@ -459,7 +478,7 @@ user-select:none;}
                         success: function(data){
 
                             var  blogs=data["blog"];
-                            alert(blogs[0]["blogID"]);
+                           // alert(blogs[0]["blogID"]);
                             var parent=document.getElementById("new-blog");
                             for (var i = blogs.length - 1; i >= 0; i--) {
 
@@ -478,7 +497,7 @@ user-select:none;}
                                 success: function(data){
 
                                     var  courseArr=data["courseList"];
-                                    alert(courseArr[0]["courseID"]);
+                                    //alert(courseArr[0]["courseID"]);
                                     var parent=document.getElementById("_label");
                                     for (var i = 0; i < courseArr.length; i++) {
 
@@ -516,13 +535,10 @@ user-select:none;}
                     alert("error");
                 }
             });
-
-
-
 };
 function postCourseIdFunction(id){
     var courseID=id;
- $.ajax({
+    $.ajax({
         type: "POST",
         url: "http://rap2api.taobao.org/app/mock/115879/course/selectCourse",
         data: {"courseID":courseID},
@@ -541,7 +557,6 @@ function postCourseIdFunction(id){
             alert("课程标签error");
         }
     });
-
 };
 function postIdFunction(id){
     var blogID=id;
@@ -580,90 +595,5 @@ function jumpToCoursePage(i){
             }
         })
     };
-var options = {
-                list:".list",//列表标识
-                currentPage:1,//初始页（选传，默认1）
-                pageSize:3,//每页列表数
-                listTotal:31,//列表总数（选传），不传为list总数
-                callback:function(currentPage){//翻页回调（可填，可做ajax请求）,不传为纯html切换
-                    loadData(ajaxDemo(currentPage))
-                }
-            }
-
-            $("#pageBox").paging(options)
-            function ajaxDemo(page,pageSize){
-                 $.ajax({
-                type: "GET",
-                url: "http://rap2api.taobao.org/app/mock/115879/blog/getBlogList",
-                data: {},
-                dataType:'json',
-                success: function (data) {
-                    alert("success");
-                    //document.getElementById("li1").style.display="block";
-                    //var data = JSON.parse(data);
-                    var articles=data["blog"];
-                if(!pageSize)var pageSize = 3;
-                var data1 = {},arr=[];
-                var pageIndex=1;
-                for(var i = 0;i<articles.length;i++){
-                    arr.push(articles[i]);
-                    if((i+1)%3==0){
-                        data1[pageIndex]=arr;
-                        arr=[];
-                        pageIndex++;
-                    }
-                }
-                return data[page];
-            }, 
-            error: function (data){
-                
-                    alert("error");
-                }
-            });
-}
-            function loadData(data){
-                console.log("callback")
-                $("#pageBox").empty();
-                for(var i = 0;i<data.length;i++){
-                        var chi=document.createElement("article");
-                            chi.className="post";
-
-                            var headDiv=document.createElement("div");
-                            headDiv.className="post-title";
-                            var headA=document.createElement("a");
-                            
-                            headA.innerHTML=data[i]["title"];
-                            headA.href="javascript:postIdFunction("+data[i]["blogID"]+");";
-                            var h=document.createElement("h1");
-                            h.appendChild(headA);
-                            headDiv.appendChild(h);
-
-                            var infoDiv=document.createElement("div");
-                            infoDiv.className="post-meta";
-                            var author=document.createElement("span");
-                            author.className="author";
-                            author.innerHTML=data[i]["authorName"];
-                            var date=document.createElement("span");
-                            date.className="dates";
-                            date.innerHTML=data[i]["time"];
-                            var commentcount=document.createElement("span");
-                            commentcount.className="comments-count";
-                            commentcount.innerHTML=data[i]["commentCount"];
-                            infoDiv.appendChild(author);
-                            infoDiv.appendChild(date);
-                            infoDiv.appendChild(commentcount);
-
-                            var commentDiv=document.createElement("div");
-                            commentDiv.className="post-content";
-                            var p=document.createElement("p");
-                            p.innerHTML=data[i]["comment"];
-                            commentDiv.appendChild(p);
-
-                            chi.appendChild(headDiv);
-                            chi.appendChild(infoDiv);
-                            chi.appendChild(commentDiv);
-                    $("#pageBox").appendChild(chi);
-                }
-            }
 </script>
 </html>

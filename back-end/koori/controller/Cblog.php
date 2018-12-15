@@ -95,6 +95,7 @@ class Cblog {
      *获取当前课程的所有帖子列表
      * 用了Blog模型和Message模型
      * 测试成功 12/7
+     * updated on 12/14: 将content内容改成内容前50字加省略号
      */
     public function getBlogList() {
         $courseId = Session::get('courseID');
@@ -112,7 +113,10 @@ class Cblog {
 
             $blogId = $blog['ID'];
             $curBlog['commentCount'] = Message::where(["blogID"=>$blogId])->count();
-            $curBlog['comment'] = $blog['content'];
+
+            $content = $blog['content'];
+            $curBlog['comment'] = mb_substr($blog['content'],0,50, 'utf-8')."……";
+
             $curBlog['blogID'] = $blogId;
 
             $i++;

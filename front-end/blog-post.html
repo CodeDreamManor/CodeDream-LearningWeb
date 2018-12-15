@@ -61,8 +61,8 @@
                         <li><a href="index.html#home">主页</a></li>
                         <li><a id="courseIndex" class="scroll">课程</a></li>
                         <li class="active"><a href="index.html#blog-front">交流栈</a></li>
-                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
-                        <li><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
+                        <li id="login_register"><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
+                        <li id="_post"><a href="./blog-article-post.html" class="nav-unlogin">发帖</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -87,7 +87,7 @@
                                         <h1 id="title">HTML
                                         </h1>
                                     </div>
-                                    <div class="post-meta">
+                                    <div id="_info" class="post-meta">
                                         <span class="author" id="article-author-name">ScriptEden</span>
                                         <span class="dates" id="article-post-time">23 july 2015</span>
                                         <span class="comments-count" id="article-comments-count">5 Comments
@@ -246,6 +246,30 @@
 
     window.onload = function(){
         $.ajax({
+            type: "GET",
+            url: "http://rap2api.taobao.org/app/mock/115879/login/judge",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                
+                if(data["responseStatus"]===1)
+                {
+                    alert("游客浏览");
+                    x=document.getElementById("_post");
+                    x.style.display="none";
+                }
+                else if (data["responseStatus"]===0) {
+                    alert("用户已登录");
+                    x=document.getElementById("login_register");
+                    x.style.display="none";
+                }
+                
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+        $.ajax({
             type : "GET",
             url : "http://rap2api.taobao.org/app/mock/115879/blog/getBlog",
             data : {articleID : 1},
@@ -261,6 +285,13 @@
                 $("#article-author-name").text(data["authorName"]);
                 $("#article-post-time").text(data["time"]);
                 $("#title").text(data["title"]);
+
+                var infoParent=document.getElementById("_info");
+                var btn=document.createElement("a");
+                btn.className="btn blog-btn description";
+                btn.innerHTML="收藏";
+                btn.href="javascript:addBlog();";
+                infoParent.appendChild(btn);
 
                 commentArr = data["comment"];
                 $("#article-comments-count").text(commentArr.length + " COMMENTS");
@@ -452,6 +483,32 @@
             }
         })
     };
+    function addBlog(){
+
+    $.ajax({
+        type: "POST",
+        url: "http://rap2api.taobao.org/app/mock/115879/blog/collect",
+        data: {},
+        dataType: 'json',
+        success: function(data){
+            if(data["responseStatus"]===0){
+                alert("收藏成功！");
+                //document.getElementById("_")
+                 //window.location.href="personal-center.html";
+            }
+            else if (data["responseStatus"]===1) {
+                alert("请先登录");
+            }
+            else if (data["responseStatus"]===2) {
+                alert("收藏失败！");
+            }
+        },
+        error: function(data){
+            alert("添加收藏error");
+        }
+    });
+
+}
     function jumpToCoursePage(i){
         $.ajax({
             type : "POST",
