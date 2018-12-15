@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	
+    <link rel="shortcut icon" href="images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.png" type="image/x-icon">
+
+    <title>Code Dream</title>
+	
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!--<script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+   
+    <link rel="stylesheet" href="css/chart.css" media="screen" type="text/css" />
+    
+    <!--Library Styles-->    
+    ...<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/font-awesome.css" rel="stylesheet">
+    <link href="css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="css/lib/nivo-themes/default/default.css" rel="stylesheet">
+	
+    <!--Template Styles-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scheme/purple.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="icon" href="__STATIC__/images/favicon/favicon.png" type="image/x-icon">
+    <!--ajax-->
+    <!--html框
+    <link rel="stylesheet" type="text/css" href="css/animate.css">-->
+
+<link href="__STATIC__/test/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+<link href="__STATIC__/test/common.css" rel="stylesheet" type="text/css">
+<link href="__STATIC__/test/passnumberbind.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+    @media only screen and (max-width: 768px) {
+
+
+}
+.collectDiv {
+    width: 25%;
+    }
+
+        .carousel-control.left {
+
+background-image:none;
+
+background-repeat: repeat-x;
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+
+}
+
+.carousel-control.right {
+
+left: auto; right: 0;
+
+background-image:none;
+
+background-repeat: repeat-x;
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+
+} 
+
+    </style>
+</head>
+
+<body data-spy="scroll">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+	
+    <div id="main-wrapper">
+        
+        <!-- Site Navigation -->
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <script>
+                    function over(){
+                        document.getElementById('html-marker').style="display: block";
+                        document.getElementById('css-marker').style="display: block";
+                        document.getElementById('js-marker').style="display: block";
+                        document.getElementById('php-marker').style="display: block";
+                    }
+                    function out(){
+                        document.getElementById('html-marker').style="display: none";
+                        document.getElementById('css-marker').style="display: none";
+                        document.getElementById('js-marker').style="display: none";
+                        document.getElementById('php-marker').style="display: none";
+                    }
+                </script>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ><a  href="index.html">主页</a></li>
+                        <li><a id="course"  onmousemove="over()" onmouseout="out()" href="index.html#services">课程</a></li>
+                            <li id="html-marker"  style="display: none;" onmousemove="over()" onmouseout="out()">
+                            <a href="html-course.html"  >HTML</a></li>
+                            <li><a id="css-marker"  style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">CSS</a></li>
+                            <li><a id="js-marker"  style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">JS</a></li>
+                            <li><a id="php-marker"  style="display: none;" onmousemove="over()" onmouseout="out()" href="index.html#services">PHP</a></li>
+                        <li class="active"><a  href="personal-center.html">个人中心</a></li>
+                        <li><a  href="index.html#services">知识图谱</a></li>
+                        <li><a  href="index.html#blog-front">交流栈</a></li>
+                        <li><a  href="index.html#contact">联系我们</a></li>
+                        <li><a href="./pass.html" class="nav-unlogin">登录|注册</a></li>
+                    </ul>
+                </div>
+            </nav>
+        
+       
+</div>
+<link rel="stylesheet" type="text/css" href="css/five.css">
+
+<div id="container">
+   <nav class="navbar navbar-default navbar-fixed-top wow pulse bg-red animated" style="">
+        <div class="container" style="background-color: ">
+            <div class="navbar-header page-scroll">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+                    <span class="sr-only">Toggle navigation</span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden"> <a href="#page-top"></a> </li>
+                    <li> <a class="page-scroll text-navbar" href="#about" >个人信息</a> </li>
+                    <li> <a class="page-scroll text-navbar" href="#learned">已学课程</a> </li>
+                    <li> <a class="page-scroll text-navbar" href="#collect">个人收藏</a> </li>
+                    <li> <a class="page-scroll text-navbar" href="#chart">每日学习</a> </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<section id="about" class="gray">
+    <div class="container " style="padding-top:60px" align="center">
+
+            <div id="personalInfo"   style="">
+                <div class="row">
+                <div class="col-md-2 col-md-offset-1 col-xs-6 col-xs-offset-2 col-sm-4 col-sm-4" style="">
+                    <img class="col-sm-1" style="width:100%;border-radius:50%" src="images/lulu.jpg ">
+                </div>
+                <div class="col-md-7" align="left" style="margin-top: 10px">
+                    <div class="" style="margin-bottom: =20px" align="left">
+                             <p style="font-size: 32px;" >Hello,<span style="size: 37px" id="_nickName">我叫鲁鲁鲁</span>!</p>
+                             <hr align="left" style="width:400PX;height:20px;border-color: #FFFFFF">
+                            
+                    </div>
+                    
+                        <div class="row col-md-7 col-sm-7" style="margin-top: -20px">
+                            
+                             <div class="col-md-5 col-sm-5" style=" ">
+                                 <p style="font-size:15px ;" id="_mail">976370590@qq.com</p>
+                             </div>
+                             <div class="col-md-2 col-sm-2" style="">
+                                    <img id="_gender" style="width:30px" src="images/girl.png">
+                            </div>
+                            
+                        </div>
+                 </div>
+                 
+             </div>
+             <div class="col-md-2 col-md-offset-5" style="">
+                                <button class="btn" id="editBtn" style="height: 35px">编辑</button>
+                            </div>
+                  
+            </div>
+           
+            <div id="editFrame" class="row"  style="display: none">
+                
+                <div class="col-md-2" style="">
+                    <img style="width:50%;border-radius:50%" src="images/lulu.jpg ">
+                    
+                </div>
+                <div class="col-md-8 col-xs-6">
+                    <div class="" style="margin-left: -400px;margin-bottom: =20px">
+                             <p style="font-size: 32px;margin:-5px auto" >Hello,<input type="text"  size="15" style="size: 37px" name="editNickname" value="我叫鲁鲁鲁" id="_editnickName">!</p>
+                             <hr style="width:400PX;height:20px;border-color: #FFFFFF">
+                            
+                    </div>
+                    
+                        <div class="row" style="margin-top: -5px">
+                            
+                             <div class="col-md-2" style="margin-left: 50px;margin-top: -3px">
+                                邮箱<input id="_editMail" type="text" name="editMail" value="976370590@qq.com">
+                            </div>
+        
+                            
+                            <div class="col-md-3 col-xs-3" style="margin-left: 150px;margin-top: -5px">
+                                <button id="saveBtn" class="btn" style="height: 35px">保存</button>
+                            </div>
+                        </div>
+                 </div>
+            </div>
+            
+            <!--
+            <div class="row">
+                <div class="col-md-1">
+                    <p>邮箱</p>
+                </div>
+                <div class="col-md-2">
+                    <p id="mail">12345@qq.com</p>
+                </div>
+            </div>-->
+            
+
+        </div>
+</section>
+<section id="learned" class="">
+    <div  align="center">
+                    <h1>已选课程</h1>
+                    <hr style="width:800px;height:20px;">
+                </div>
+    <div id="learned-course" class="container col-md-offset-4" style="" align="center">
+           <!--
+           <div id="_html" class="row" align="center" style="">
+                <div class="col-md-1">
+                    <p>HTML</p>
+                </div>
+                <div class="col-md-2" style="margin-left: -10px">
+                    <div class="progress progress-striped active">
+                         <div id="_htmlPro" class="progress-bar progress-bar-default" style="width: 99%"></div>
+                    </div>
+                </div>
+            </div>
+            
+             <div id="_css" class="row" align="center" style="display: none">
+                <div class="col-md-1">
+                    <p>CSS</p>
+                </div>
+                <div class="col-md-2" style="margin-left: -10px">
+                    <div class="progress progress-striped active">
+                         <div id="_cssPro" class="progress-bar progress-bar-default" style="width: 99%"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="_js" class="row" align="center" style="display: none;">
+                <div class="col-md-1">
+                    <p>JavaScript</p>
+                </div>
+                <div class="col-md-2" style="margin-left: -10px">
+                    <div class="progress">
+                        <div class="progress progress-striped active">
+                             <div id="_jsPro" class="progress-bar progress-bar-default" style="width: 99%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="_php" class="row" align="center" style="display: none;">
+                <div class="col-md-1">
+                    <p>PHP</p>
+                </div>
+                <div class="col-md-2" style="margin-left: -10px">
+                    <div class="progress progress-striped active">
+                         <div id="_phpPro" class="progress-bar progress-bar-default" style="width: 99%"></div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+</section>
+            <!-- BEGIN HOME -->
+
+<section id="collect" class="gray ">
+                <!-- Superslides -->
+                <div  align="center">
+                    <h1>个人收藏</h1>
+                    <hr style="width:800px;height:20px;border-color: #FFFFFF">
+                </div>
+              <div align="center">
+<div id="myCarousel" class="carousel slide"style="border-radius: 20%;padding-top: 0px ;height:500px"align="center" >
+    <!-- 轮播（Carousel）指标 
+    <ol class="carousel-indicators" >
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>   -->
+    <!-- 轮播（Carousel）项目 -->
+    <div id="carDiv" class="carousel-inner" style=" height:500px;border-radius: 10%;">
+        <div class="item active container" style="" >
+            
+            <div id="tryRow" class="row">
+               
+                
+                
+                
+            </div>
+            
+
+        </div>
+        
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div> 
+</div>
+                <!-- End of Superslide -->
+</section>
+            <!-- END HOME -->
+    <section id="chart">
+        <div  align="center" >
+                    <h1>学习时长</h1>
+                    <hr style="width:800px;height:20px;" >
+                  
+                </div>
+            <div class="charts--container" style="border-top: -20px">
+  <ul>
+    <li class="chart">
+      <h3 class="chart--subHeadline">每日学习</h3>
+      <h2 class="chart--headline">Daily Study</h2>
+      <div id="lineChart">
+        <svg id="lineChartSVG" class="lineChart--svg">
+          <defs>
+            <linearGradient id="lineChart--gradientBackgroundArea" x1="0" x2="0" y1="0" y2="1">
+              <stop class="lineChart--gradientBackgroundArea--top" offset="0%" />
+              <stop class="lineChart--gradientBackgroundArea--bottom" offset="100%" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </li>
+  </ul>
+</div></section>
+            <!-- BEGIN SERVICES 
+            <section id="services" class="services">
+                
+            </section>-->
+            <!-- END SERVICES -->
+
+            <!-- BEGIN BLOG 
+            <section id="blog-front" class="blog-front gray">
+               
+            </section>-->
+            <!-- END BLOG -->
+
+            <!-- BEGIN CONTACT 
+            <section id="contact" class="contact gray">
+                
+            </section>-->
+            <!-- END CONTACT -->
+
+            <!-- BEGIN MAP 
+            <section id="course-map" class="services">
+                
+            </section>-->
+            <!-- END MAP -->
+
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:;"><i class="fa fa-dribbble"></i></a>
+                        </div> 
+                        <p>
+                            我们项目组
+                        </p>               
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+    
+
+
+    <!-- Back to top -->
+    <div id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+    
+    
+    
+
+    <!-- Library Scripts -->
+    <script type="text/javascript">
+    
+   
+    </script>
+    <script src="js/lib/jquery.preloader.js"></script>
+    <script src="js/lib/nivo-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.superslides.min.js"></script>
+    <script src="js/lib/smoothscroll.js"></script>
+    <script src="js/lib/jquery.sudoslider.min.js"></script>
+    <script src="js/lib/jquery.bxslider.min.js"></script>
+    <script src="js/lib/jquery.mixitup.min.js"></script>
+    <script src="js/lib/jquery.backtotop.js"></script>
+    <script src="js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <!--<script src="js/lib/retina.min.js"></script>
+
+     Custom Script -->    
+    <script src="js/main.js"></script>
+    <script src='js/d3.v3.min.js'></script>
+
+  <script src="js/chart.js"></script>
+</body>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+   
+        
+    
+
+    window.onload = function(){
+  //要执行的js代码段  
+         x=document.getElementById("_css");  // 找到元素
+　      // x.innerHTML="Hello JavaScript!"; 
+        //document.getElementById("_cssPro").style.width="50%";
+        /*
+         //x.style.display="block";
+         var y=document.getElementById("tryRow");
+        var chi=document.createElement("div");
+        chi.className="collectDiv service col-md-3";
+        
+        var h=document.createElement("h3");
+        h.className="heading";
+        h.innerHTML="LULU";
+        var p=document.createElement("p");
+        p.className="description";
+        p.innerHTML="超文本标记语言，标准通用标记语言下的一个应用。“超文本”就是指页面内可以包含图片、链接，甚至音乐、程序等非文字元素。";
+        chi.appendChild(h);
+        chi.appendChild(p);
+        y.appendChild(chi);*/
+
+         $.ajax({
+                type: "GET",
+                url: "http://rap2api.taobao.org/app/mock/115879/user/getAllInfo",
+                data: {},
+                dataType:'json',
+                success: function (data) {
+                    //alert("success");
+                    //var data = JSON.parse(data);
+                    
+                    x1=document.getElementById("_nickName");  // 找到元素
+    　              x1.innerHTML=data["nickname"];
+                    e1=document.getElementById("_editnickName");
+                    e1.value=data["nickname"];
+
+                    //x2=document.getElementById("_userName");  // 找到元素
+    　              //x2.innerHTML=data["username"];
+                   // e2=document.getElementById("_edituserName");
+                   // e2.value=data["username"];
+
+                    x3=document.getElementById("_mail");
+                    x3.innerHTML=data["mail"];
+                    e3=document.getElementById("_editMail");
+                    e3.value=data["mail"]
+                    if(data["gender"]=="1")
+                    {
+                        x3=document.getElementById("_gender");  // 找到元素
+    　                  x3.src="images/boy.png";
+                        
+                    }
+
+
+                    var courseArr=data["course"];
+                    //var textalter="";
+                    //alert(courseArr[0]["courseName"]);
+                    var courseDiv=document.getElementById("learned-course");
+                    for (var i = courseArr.length - 1; i >= 0; i--) {
+                       
+                        var ch=document.createElement("div");
+                        ch.className="row";
+                        //c.align="center";
+                        var child1=document.createElement("div");
+                        child1.className="col-md-1";
+                        
+                        var hd=document.createElement("p");
+                        hd.innerHTML=courseArr[i]["courseName"];
+                        child1.appendChild(hd);
+
+                        var child2=document.createElement("div");
+                        child2.className="col-md-2";
+                        //child2.style.margin-left="-10px";
+                        var child3=document.createElement("div");
+                        child3.className="progress progress-striped active";
+                        var child4=document.createElement("div");
+                        child4.className="progress-bar progress-bar-default";
+                        child4.style.width=courseArr[i]["studyProgress"];
+                        child3.appendChild(child4);
+                        child2.appendChild(child3);
+                        ch.appendChild(child1);
+                        ch.appendChild(child2);
+                        courseDiv.appendChild(ch);
+/*          
+                        if(courseArr[i]["courseID"]=="0")
+                        { 
+                            x4=document.getElementById("_html");
+                            document.getElementById("_htmlPro").style.width=courseArr[i]["studyProgress"];
+                            textalter=textalter+"html"+courseArr[i]["studyProgress"];
+                        }
+                        else if(courseArr[i]["courseID"]=="1")
+                        {
+                            x4=document.getElementById("_css");
+                            pro=document.getElementById("_cssPro");
+                            pro.style.width=courseArr[i]["studyProgress"];
+                            textalter=textalter+"css"+courseArr[i]["studyProgress"];
+                        }
+                        else if(courseArr[i]["courseID"]=="2")
+                        {
+                            x4=document.getElementById("_js");
+                            document.getElementById("_jsPro").style.width=courseArr[i]["studyProgress"];
+                            textalter=textalter+"js"+courseArr[i]["studyProgress"];
+                        }
+                        else if(courseArr[i]["courseID"]=="3")
+                        {
+                            x4=document.getElementById("_php");
+                            document.getElementById("_phpPro").style.width=courseArr[i]["studyProgress"];
+                            textalter=textalter+"php"+courseArr[i]["studyProgress"];
+                        }
+                        x4.style.display="block";*/
+                    }
+                    //alert(textalter);
+                    var collect=data["collectBlog"];
+                    var rowPar= document.getElementById("tryRow");
+                   //alert(collect[0]["author"]);
+                    for(var i = collect.length-1;i>=0;i--){
+
+                            var chi=document.createElement("div");
+                            chi.className="collectDiv service col-md-4";
+                            var h=document.createElement("h3");
+                            h.className="heading";
+                            h.innerHTML=collect[i]["author"];
+                             var p=document.createElement("p");
+                            p.className="description";
+                            p.innerHTML=collect[i]["desc"];
+                            var btn=document.createElement("a");
+                            btn.className="btn blog-btn description";
+                            btn.innerHTML="删除";
+                            //btn.onclick="deleteBlog("+collect[i]["blogID"]+")";
+                             btn.href="javascript:deleteBlog("+collect[i]["blogID"]+");";
+                            chi.appendChild(h);
+                            chi.appendChild(p);
+                            chi.appendChild(btn);
+                            
+
+
+                        if((collect.length-1-i)%3!=0){ //不用新建rowdiv
+                           // var y=document.getElementById("tryRow");
+                             
+                            rowPar.appendChild(chi);
+                           
+                        }
+                        else if((collect.length-1-i)==0)//第一个留言
+                        {
+                            rowPar.appendChild(chi);
+                          
+                        }
+                        else{//要创建新的rowdiv
+                            var carPar=document.getElementById("carDiv");
+                            var itemPar=document.createElement("div");
+                            itemPar.className="item container";
+                            rowPar=document.createElement("div");
+                            rowPar.className="row";
+                            rowPar.appendChild(chi);
+                            
+                            itemPar.appendChild(rowPar);
+                            carPar.appendChild(itemPar);
+                        }
+                    }
+
+                   
+                },
+                error: function (data){
+                    
+                    alert("error");
+                }
+            });
+}
+function deleteBlog(id){
+    alert("deleteBlog");
+    var blogID=id;
+ $.ajax({
+        type: "POST",
+        url: "http://rap2api.taobao.org/app/mock/115879/user/deleteBlog",
+        data: {"blogID":blogID},
+        dataType: 'json',
+        success: function(data){
+            if(data["responseStatus"]===0){
+                alert("成功传入blogID");
+                //document.getElementById("_")
+                 window.location.href="personal-center.html";
+            }
+            else{
+                alert("传入blogID失败");
+            }
+        },
+        error: function(data){
+            alert("删除收藏error");
+        }
+    });
+
+}
+
+document.getElementById("editBtn").onclick=function(){
+        document.getElementById("editFrame").style.display="block";
+        document.getElementById("personalInfo").style.display="none";
+    }
+    $("#saveBtn").click(function(){
+        
+        document.getElementById("editFrame").style.display="none";
+        $.ajax({
+        type: "POST",
+        url: "http://rap2api.taobao.org/app/mock/115879/user/modify",
+        data: {"nickname":$("#_editnickName").val(),"mail":$("#_editMail").val()},
+        dataType: 'json',
+        success: function(data){
+            if(data["responseStatus"]===0){
+                document.getElementById("_nickName").innerHTML=document.getElementById("_editnickName").value;
+               // document.getElementById("_userName").innerHTML=document.getElementById("_edituserName").value;
+                document.getElementById("_mail").innerHTML=document.getElementById("_editMail").value;
+                alert("修改成功");
+                //document.getElementById("_")
+            }
+            else{
+                document.getElementById("_editnickName").value=document.getElementById("_nickName").val();
+                //document.getElementById("_edituserName").value=document.getElementById("_userName").val();
+                document.getElementById("_editMail").value=document.getElementById("_mail").val();
+                alert("修改失败");
+
+            }
+        },
+        error: function(data){
+            alert("error");
+        }
+    });
+        document.getElementById("personalInfo").style.display="block";
+    })
+/*
+document.getElementById("saveBtn").onclick=function(){
+    $ajax({
+        type:"PUT",
+        url:"http://rap2api.taobao.org/app/mock/115879/v1/user/modify",
+        data:{"nickname":$("#_editnickName").value,"username":$("#_edituserName").value,"mail":$("#_editMail")},
+        dataType:'json',
+        success:function(data){
+            if(data["responseStatus"]===0){
+                alert("修改成功");
+                document.getElementById("personalInfo").style.display="block";
+        document.getElementById("editFrame").style.display="none";
+            }
+            else{
+                alert("修改失败");
+            }
+        },
+        error:function{
+            alert("error");
+        }
+    });
+        
+    }*/
+
+;( function() {
+
+  
+  var data = {
+    lineChart : [
+      {
+        date  : '2018-11-01',
+        label : '2018-11-01',
+        value : 500
+      },
+      {
+        date  : '2018-11-02',
+        label : '2018-11-02',
+        value : 1000
+      },
+      {
+        date  : '2018-11-03',
+        label : '2018-11-03',
+        value : 700
+      },
+      {
+        date  : '2018-11-04',
+        label : '2018-11-04',
+        value : 534
+      },
+      {
+        date  : '2018-11-05',
+        label : '2018-11-05',
+        value : 1423
+      },
+      {
+        date  : '2018-11-06',
+        label : '2018-11-06',
+        value : 1222
+      },
+      {
+        date  : '2018-11-07',
+        label : '2018-11-07',
+        value : 948
+      }
+    ],
+    pieChart  : [
+      {
+        color       : 'red',
+        description : 'How many students purchased their last game online via download',
+        title       : 'online',
+        value       : 0.60
+      },
+      {
+        color       : 'blue',
+        description : 'How many student purchased their last game in the retail shops',
+        title       : 'retail',
+        value       : 0.4
+      }
+    ]
+  };
+  
+  $.ajax({
+                type: "GET",
+                url: "http://rap2api.taobao.org/app/mock/115879/user/getAllInfo",
+                data: {},
+                dataType:'json',
+                success: function (_data) {
+                    //alert("success");
+                    //var data = JSON.parse(data);
+                    //x1=document.getElementById("_nickName");  // 找到元素
+    　              //x1.innerHTML=data["nickname"];
+                    //data[1]["value"]=_data[1][]
+                    //alert("success");
+                    var timeArr=_data["learnTime"];
+                    
+                    for (var i = timeArr.length - 1; i >= 0; i--) {
+                        
+                            data["lineChart"][i]["value"]=timeArr[i]["time"];
+                           // date["lineChart"][i]["date"]=timeArr[i]["dateString"];
+                    }
+                },
+                error: function (_data){
+                    //document.getElementById('registerUserName').value = "error";
+                    // console.log(jqXHR);
+                    // console.log(textStatus);
+                    // console.log(errorThrown);
+                    alert("error");
+                }
+            });
+  
+  var DURATION = 1000;
+  var DELAY    = 500;
+  
+  /**
+   * draw the fancy line chart
+   *
+   * @param {String} elementId elementId
+   * @param {Array}  data      data
+   */
+  function drawLineChart( elementId, data ) {
+    // parse helper functions on top
+    var parse = d3.time.format( '%Y-%m-%d' ).parse;
+    // data manipulation first
+    data = data.map( function( datum ) {
+      datum.date = parse( datum.date );
+      
+      return datum;
+    } );
+    
+    console.log( data ); 
+    // TODO code duplication check how you can avoid that
+    var containerEl = document.getElementById( elementId ),
+        width       = containerEl.clientWidth,
+        height      = width * 0.4,
+        margin      = {
+          top    : 30,
+          right  : 10,
+          left   : 10 
+        },
+        
+        detailWidth  = 98,
+        detailHeight = 55,
+        detailMargin = 10,
+
+        container   = d3.select( containerEl ),
+        svg         = container.select( 'svg' )
+                                .attr( 'width', width )
+                                .attr( 'height', height + margin.top ),
+
+        x          = d3.time.scale().range( [ 0, width - detailWidth ] ),
+        xAxis      = d3.svg.axis().scale( x )
+                                  .ticks ( 8 )
+                                  .tickSize( -height ),
+        xAxisTicks = d3.svg.axis().scale( x )
+                                  .ticks( 16 )
+                                  .tickSize( -height )
+                                  .tickFormat( '' ),
+        y          = d3.scale.linear().range( [ height, 0 ] ),
+        yAxisTicks = d3.svg.axis().scale( y )
+                                  .ticks( 12 )
+                                  .tickSize( width )
+                                  .tickFormat( '' )
+                                  .orient( 'right' ),
+        
+        area = d3.svg.area()
+                      .interpolate( 'linear' )
+                      .x( function( d )  { return x( d.date ) + detailWidth / 2; } )
+                      .y0( height )
+                      .y1( function( d ) { return y( d.value*20 ); } ),
+
+        line = d3.svg.line()
+                  .interpolate( 'linear' )
+                  .x( function( d ) { return x( d.date ) + detailWidth / 2; } )
+                  .y( function( d ) { return y( d.value*20 ); } ),
+        
+        startData = data.map( function( datum ) {
+                      return {
+                        date  : datum.date,
+                        value : 0
+                      };
+                    } ),
+        
+        circleContainer;
+    
+    // Compute the minimum and maximum date, and the maximum price.
+    x.domain( [ data[ 0 ].date, data[ data.length - 1 ].date ] );
+    // hacky hacky hacky :(
+    y.domain( [ 0, d3.max( data, function( d ) { return d.value; } ) +6000 ] );
+
+    svg.append( 'g' )
+        .attr( 'class', 'lineChart--xAxisTicks' )
+        .attr( 'transform', 'translate(' + detailWidth / 2 + ',' + height + ')' )
+        .call( xAxisTicks );
+
+    svg.append( 'g' )
+        .attr( 'class', 'lineChart--xAxis' )
+        .attr( 'transform', 'translate(' + detailWidth / 2 + ',' + ( height + 7 ) + ')' )
+        .call( xAxis );
+    
+    svg.append( 'g' )
+      .attr( 'class', 'lineChart--yAxisTicks' )
+      .call( yAxisTicks );
+    
+    // Add the line path.
+    svg.append( 'path' )
+        .datum( startData )
+        .attr( 'class', 'lineChart--areaLine' )
+        .attr( 'd', line )
+        .transition()
+        .duration( DURATION )
+        .delay( DURATION / 2 )
+        .attrTween( 'd', tween( data, line ) )
+        .each( 'end', function() {
+          drawCircles( data );
+        } );
+    
+    
+    // Add the area path.
+    svg.append( 'path' )
+        .datum( startData )
+        .attr( 'class', 'lineChart--area' )
+        .attr( 'd', area )
+        .transition()
+        .duration( DURATION )
+        .attrTween( 'd', tween( data, area ) );
+    
+    // Helper functions!!!
+    function drawCircle( datum, index ) {
+      circleContainer.datum( datum )
+                    .append( 'circle' )
+                    .attr( 'class', 'lineChart--circle' )
+                    .attr( 'r', 0 )
+                    .attr(
+                      'cx',
+                      function( d ) {
+                        return x( d.date ) + detailWidth / 2;
+                      }
+                    )
+                    .attr(
+                      'cy',
+                      function( d ) {
+                        return y( d.value*20 );
+                      }
+                    )
+                    .on( 'mouseenter', function( d ) {
+                      d3.select( this )
+                        .attr(
+                          'class',
+                          'lineChart--circle lineChart--circle__highlighted' 
+                        )
+                        .attr( 'r', 7 );
+                      
+                        d.active = true;
+                        
+                        showCircleDetail( d );
+                    } )
+                    .on( 'mouseout', function( d ) {
+                      d3.select( this )
+                        .attr(
+                          'class',
+                          'lineChart--circle' 
+                        )
+                        .attr( 'r', 6 );
+                      
+                      if ( d.active ) {
+                        hideCircleDetails();
+                        
+                        d.active = false;
+                      }
+                    } )
+                    .on( 'click touch', function( d ) {
+                      if ( d.active ) {
+                        showCircleDetail( d )
+                      } else {
+                        hideCircleDetails();
+                      }
+                    } )
+                    .transition()
+                    .delay( DURATION / 10 * index )
+                    .attr( 'r', 6 );
+    }
+    
+    function drawCircles( data ) {
+      circleContainer = svg.append( 'g' );
+
+      data.forEach( function( datum, index ) {
+        drawCircle( datum, index );
+      } );
+    }
+    
+    function hideCircleDetails() {
+      circleContainer.selectAll( '.lineChart--bubble' )
+                      .remove();
+    }
+    
+    function showCircleDetail( data ) {
+      var details = circleContainer.append( 'g' )
+                        .attr( 'class', 'lineChart--bubble' )
+                        .attr(
+                          'transform',
+                          function() {
+                            var result = 'translate(';
+                            
+                            result += x( data.date );
+                            result += ', ';
+                            result += y( data.value ) - detailHeight - detailMargin;
+                            result += ')';
+                            
+                            return result;
+                          }
+                        );
+      
+      details.append( 'path' )
+              .attr( 'd', 'M2.99990186,0 C1.34310181,0 0,1.34216977 0,2.99898218 L0,47.6680579 C0,49.32435 1.34136094,50.6670401 3.00074875,50.6670401 L44.4095996,50.6670401 C48.9775098,54.3898926 44.4672607,50.6057129 49,54.46875 C53.4190918,50.6962891 49.0050244,54.4362793 53.501875,50.6670401 L94.9943116,50.6670401 C96.6543075,50.6670401 98,49.3248703 98,47.6680579 L98,2.99898218 C98,1.34269006 96.651936,0 95.0000981,0 L2.99990186,0 Z M2.99990186,0' )
+              .attr( 'width', detailWidth )
+              .attr( 'height', detailHeight );
+      
+      var text = details.append( 'text' )
+                        .attr( 'class', 'lineChart--bubble--text' );
+      
+      text.append( 'tspan' )
+          .attr( 'class', 'lineChart--bubble--label' )
+          .attr( 'x', detailWidth / 2 )
+          .attr( 'y', detailHeight / 3 )
+          .attr( 'text-anchor', 'middle' )
+          .text( data.label );
+      
+      text.append( 'tspan' )
+          .attr( 'class', 'lineChart--bubble--value' )
+          .attr( 'x', detailWidth / 2 )
+          .attr( 'y', detailHeight / 4 * 3 )
+          .attr( 'text-anchor', 'middle' )
+          .text( data.value+" min" );
+    }
+    
+    function tween( b, callback ) {
+      return function( a ) {
+        var i = (function interpolate() {
+          return function( t ) {
+            return a.map( function( datum, index ) {
+              return {
+                date  : datum.date,
+                value : datum.value + b[ index ].value * t
+              };
+            } ); 
+          };
+        })();
+  
+        return function( t ) {
+          return callback( i ( t ) );
+        };
+      };
+    }
+  }
+  
+  /**
+   * draw the fancy pie chart
+   *
+   * @param {String} elementId elementId
+   * @param {Array}  data      data
+   */
+  function drawPieChart( elementId, data ) {
+    // TODO code duplication check how you can avoid that
+    var containerEl = document.getElementById( elementId ),
+        width       = containerEl.clientWidth,
+        height      = width * 0.4,
+        radius      = Math.min( width, height ) / 2,
+        container   = d3.select( containerEl ),
+        svg         = container.select( 'svg' )
+                              .attr( 'width', width )
+                              .attr( 'height', height );
+    var pie = svg.append( 'g' )
+                .attr(
+                  'transform',
+                  'translate(' + width / 2 + ',' + height / 2 + ')'
+                );
+    
+    var detailedInfo = svg.append( 'g' )
+                          .attr( 'class', 'pieChart--detailedInformation' );
+
+    var twoPi   = 2 * Math.PI;
+    var pieData = d3.layout.pie()
+                    .value( function( d ) { return d.value; } );
+
+    var arc = d3.svg.arc()
+                    .outerRadius( radius - 20)
+                    .innerRadius( 0 );
+    
+    
+
+    drawChartCenter(); 
+    
+    function drawChartCenter() {
+      var centerContainer = pie.append( 'g' )
+                                .attr( 'class', 'pieChart--center' );
+      
+      centerContainer.append( 'circle' )
+                      .attr( 'class', 'pieChart--center--outerCircle' )
+                      .attr( 'r', 0 )
+                      .attr( 'filter', 'url(#pieChartDropShadow)' )
+                      .transition()
+                      .duration( DURATION )
+                      .delay( DELAY )
+                      .attr( 'r', radius - 50 );
+      
+      centerContainer.append( 'circle' )
+                      .attr( 'id', 'pieChart-clippy' )
+                      .attr( 'class', 'pieChart--center--innerCircle' )
+                      .attr( 'r', 0 )
+                      .transition()
+                      .delay( DELAY )
+                      .duration( DURATION )
+                      .attr( 'r', radius - 55 )
+                      .attr( 'fill', '#fff' );
+    }
+    
+    function drawDetailedInformation ( data, element ) {
+      var bBox      = element.getBBox(),
+          infoWidth = width * 0.3,
+          anchor,
+          infoContainer,
+          position;
+      
+      if ( ( bBox.x + bBox.width / 2 ) > 0 ) {
+        infoContainer = detailedInfo.append( 'g' )
+                                    .attr( 'width', infoWidth )
+                                    .attr(
+                                      'transform',
+                                      'translate(' + ( width - infoWidth ) + ',' + ( bBox.height + bBox.y ) + ')'
+                                    );
+        anchor   = 'end';
+        position = 'right';
+      } else {
+        infoContainer = detailedInfo.append( 'g' )
+                                    .attr( 'width', infoWidth )
+                                    .attr(
+                                      'transform',
+                                      'translate(' + 0 + ',' + ( bBox.height + bBox.y ) + ')'
+                                    );
+        anchor   = 'start';
+        position = 'left';
+      }
+
+      infoContainer.data( [ data.value * 100 ] )
+                    .append( 'text' )
+                    .text ( '0 %' )
+                    .attr( 'class', 'pieChart--detail--percentage' )
+                    .attr( 'x', ( position === 'left' ? 0 : infoWidth ) )
+                    .attr( 'y', -10 )
+                    .attr( 'text-anchor', anchor )
+                    .transition()
+                    .duration( DURATION )
+                    .tween( 'text', function( d ) {
+                      var i = d3.interpolateRound(
+                        +this.textContent.replace( /\s%/ig, '' ),
+                        d
+                      );
+
+                      return function( t ) {
+                        this.textContent = i( t ) + ' %';
+                      };
+                    } );
+      
+      infoContainer.append( 'line' )
+                    .attr( 'class', 'pieChart--detail--divider' )
+                    .attr( 'x1', 0 )
+                    .attr( 'x2', 0 )
+                    .attr( 'y1', 0 )
+                    .attr( 'y2', 0 )
+                    .transition()
+                    .duration( DURATION )
+                    .attr( 'x2', infoWidth );
+      
+      infoContainer.data( [ data.description ] ) 
+                    .append( 'foreignObject' )
+                    .attr( 'width', infoWidth ) 
+                    .attr( 'height', 100 )
+                    .append( 'xhtml:body' )
+                    .attr(
+                      'class',
+                      'pieChart--detail--textContainer ' + 'pieChart--detail__' + position
+                    )
+                    .html( data.description );
+    }
+  }
+  
+  function ಠ_ಠ() {
+    
+    drawLineChart(    'lineChart',    data.lineChart );
+  }
+  
+  // yeah, let's kick things off!!!
+  ಠ_ಠ();
+  
+})();
+</script>
+</html>
