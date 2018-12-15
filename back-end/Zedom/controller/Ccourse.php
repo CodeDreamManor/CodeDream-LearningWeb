@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Zedom
- * Date: 2018/12/7
- * Time: 11:45
- */
-
 namespace app\index\controller;
 
 use app\common\model\Chapter;
@@ -22,6 +15,15 @@ class Ccourse
      * Writer:      吴潘安
      * Date:        2018/12/7
      * Function:    返回新建课程页面
+     */
+    /**
+     * 获取所有列表
+     * @url api.php/index/index/all
+     * @method POST
+     * @param integer $page 页数
+     * @param integer $limit 每页个数
+     * @return integer $code 状态码
+     * @return string $msg 返回消息
      */
     public function newcourse(){
         return view();

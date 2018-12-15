@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Zedom
- * Date: 2018/12/8
- * Time: 16:43
- */
 
 namespace app\index\controller;
 

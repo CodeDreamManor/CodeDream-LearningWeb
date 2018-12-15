@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Zedom
- * Date: 2018/11/7
- * Time: 23:19
- */
-
 namespace app\index\controller;
 
 use app\common\model\Dailystudy;
@@ -143,11 +136,11 @@ class Login
      * Function:    用户状态检测接口，判断用户是否登陆以及身份
      */
     public function judge(Request $request){
-        $result = Session::get("identity");
-        if(is_null($result))
+        if(Session::has("identity")){
+            return json_encode(["responseStatus"=>Session::get("identity")]);
+        }else{
             return json_encode(["responseStatus"=>1]);
-        else
-            return json_encode(["responseStatus"=>$result]);
+        }
     }
 }
 
