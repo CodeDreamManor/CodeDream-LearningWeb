@@ -4,8 +4,11 @@ namespace app\index\controller;
 use app\common\model\Chapter;
 use app\common\model\Course;
 use app\common\model\Section;
+use app\common\model\Usercourse;
+use function PHPSTORM_META\type;
 use think\Db;
 use think\facade\Session;
+use think\Model;
 use think\Request;
 
 class Ccourse
@@ -15,15 +18,6 @@ class Ccourse
      * Writer:      吴潘安
      * Date:        2018/12/7
      * Function:    返回新建课程页面
-     */
-    /**
-     * 获取所有列表
-     * @url api.php/index/index/all
-     * @method POST
-     * @param integer $page 页数
-     * @param integer $limit 每页个数
-     * @return integer $code 状态码
-     * @return string $msg 返回消息
      */
     public function newcourse(){
         return view();
@@ -318,23 +312,22 @@ class Ccourse
         $percent = ($place+1)/$count;
         $userID = Session::get("userID");
         $courseID = Session::get("courseID");
-        $instance = Db::table("Usercourse")
-            ->where('userID',$userID)
+        $instance = Usercourse::
+            where('userID',$userID)
             ->where('courseID',$courseID)
             ->find();
-
         if($instance){
-            $instance->save([
-                "learningProgress" => max($instance["learningProgress"], $percent)
-            ]);
+            $instance->learningProgress = max($instance->learningProgress, $percent);
+            $instance->save();
+            return $instance;
         }else{
-            Db::table("Usercourse")->insert([
+            $instance = new Usercourse([
                 "userID" => $userID,
                 "courseID" => $courseID,
                 "learningProgress" => $percent
             ]);
+            $instance->save();
         }
-
         $resultArray = [
             "responseStatus"=>0,
             "title" => $section["title"],
