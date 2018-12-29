@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="/static/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon/favicon.png" type="image/x-icon">
+
+    <title>Code Dream</title>
+    
+    <!--Library Styles-->    
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/lib/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="/static/css/lib/nivo-themes/default/default.css" rel="stylesheet">
+    
+    <!--Template Styles-->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/scheme/purple.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .always-hide{
+            display: none;
+        }
+        .scroll:hover .always-hide{
+            display: block;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    
+    <div id="main-wrapper">
+        
+        <!-- Site Navigation -->
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index">
+                        <img src="/static/images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav" id = "menu-bar">
+                        <li class="active" id = "__index"><a class="sscroll" href="/index">主页</a></li>
+                        <li id="__course"><a id="courseIndex" class="scroll">课程</a></li>
+                        <li id="__aricraft"><a class="sscroll" href="index.html#services">知识图谱</a></li>
+                        <li><a class="sscroll" href="index.html#blog-front">交流栈</a></li>
+                        <li><a class="sscroll" href="index.html#contact">联系我们</a></li>
+                        <li id="login_register"><a href="/login/page" class="nav-unlogin">登录|注册</a></li>
+                        <li id="unlogin"><a href="javascript:unlogin();" class="nav-unlogin">注销</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div id="container">
+            <!-- BEGIN HOME -->
+            <section id="home" class="home">
+                <!-- Superslides -->
+                <div id="home-slide">
+                    <ul class="slides-container text-center">
+                        <li>
+                            <div class="slide-text">
+                                <h2>与我们一起学习</h2>
+                                <span>你可以在这里学习 HTML, CSS, JS以及PHP </span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="/static/images/slider/slide-1.jpg" class="par" alt="first">
+                        </li>
+                        <li>
+                            <div class="slide-text">
+                                <h2>遇见更多的朋友</h2>
+                                <span>你可以在交流栈与志同道合的朋友一起交流</span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="/static/images/slider/slide-2.jpg" class="par" alt="first">
+                        </li>
+                        <li>
+                            <div class="slide-text">
+                                <h2>收获成长</h2>
+                                <span>你可以在个人中心看到自己每日登陆的时长，更有专注度展示哦</span>
+                                <br/>
+                            </div>
+                          <div class="slide-filter"></div>
+                            <img src="/static/images/slider/slide-3.jpg" class="par" alt="first">
+                        </li>
+                    </ul>
+                    <nav class="slides-navigation slidez">
+                        <a href="javascript:;" class="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                        <a href="javascript:;" class="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </nav>
+                </div>
+                <!-- End of Superslide -->
+            </section>
+            <!-- END HOME -->
+            
+            <!-- BEGIN SERVICES -->
+            <section id="services" class="services">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="header-content">
+                            <h2>课程</h2>
+                            <h3>以下是我们目前提供的课程</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row" id = "course-map-row">
+                        </div>
+                    </div>                   
+                </div>
+            </section>
+            <!-- END SERVICES -->
+
+            <!-- BEGIN BLOG -->
+            <section id="blog-front" class="blog-front gray">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>交流栈</h2>
+                            <h3>欢迎各位在这里分享你们的知识</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="blog-row">
+                    <!--<article class="col-md-4 col-sm-6">
+                        <figure class="blog-thumb">
+                            <img src="/static/images/blog/blog-1.jpg" alt="blog-thumb">
+                        </figure>
+                        <div class="post-area">
+                            <a class="post-cat" href="blog-post.html">
+                            <h4>分享</h4>
+                            </a>
+                            <a class="post-title" href="blog-post.html">
+                                <h3>说你想说的事情</h3>
+                            </a>
+                            <p class="post-content">在这里你可以畅所欲言</p>                            
+                        </div>
+                    </article> -->
+                </div>
+                <!--<div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="btn blog-btn">点击标题了解更多</a>
+                    </div>
+                </div>-->
+            </section>
+            <!-- END BLOG -->
+
+            <!-- BEGIN CONTACT -->
+            <section id="contact" class="contact gray">
+                <div class="row">
+                    <div class="col-md-12 mg-bt-80">
+                        <div class="header-content">
+                            <h2>联系我们</h2>
+                            <h3>让我们知道你还想有什么改进</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="address">
+                            <h2>联系方式</h2>
+                            <ul class="office">
+                                <li><i class="fa fa-phone"></i> <strong>Phone:</strong> 123456789</li>
+                                <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">123456789@qq.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <form id="contact-form" role="form">                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="c_name" placeholder="Name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="c_email" placeholder="Email">                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" id="c_message" rows="10" placeholder="Message"></textarea>
+                            </div>
+                            <br/>
+                            <button type="submit" class="btn">发送邮件</button>
+                            <div class="ajax-response"></div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- END CONTACT -->
+
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            我们项目组
+                        </p>               
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+
+
+    <!-- Back to top -->
+    <div id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+
+    <!-- Library Scripts -->
+    <script src="/static/js/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/lib/jquery.preloader.js"></script>
+    <script src="/static/js/lib/nivo-lightbox.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/lib/jquery.superslides.min.js"></script>
+    <script src="/static/js/lib/smoothscroll.js"></script>
+    <script src="/static/js/lib/jquery.sudoslider.min.js"></script>
+    <script src="/static/js/lib/jquery.bxslider.min.js"></script>
+    <script src="/static/js/lib/jquery.mixitup.min.js"></script>
+    <script src="/static/js/lib/jquery.backtotop.js"></script>
+    <script src="/static/js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="/static/js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="/static/js/main.js"></script>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        
+         jQuery.ajax({
+            type: "GET",
+            url: "/login/judge",
+            data: {},
+            //async: true,
+            dataType: "json",
+            success: function(data){
+                data = JSON.parse(data)
+                if(data["responseStatus"]===1)
+                {
+                    //alert("游客浏览");
+                    jQuery("#login_register").show();
+                    jQuery("#unlogin").hide();
+                }
+                else if (data["responseStatus"]===0) {
+                    //alert("用户已登录");
+                    jQuery("#unlogin").show();
+                    jQuery("#login_register").hide();
+                    var aTemp = document.createElement("a");
+                    var liTemp = document.createElement("li");
+                    aTemp.className = "nav-login";
+                    aTemp.href = "/user/center";
+                    aTemp.innerHTML = "个人中心";
+                    liTemp.id = "person-center";
+                    liTemp.append(aTemp);
+                    document.getElementById("menu-bar").append(liTemp);
+                }
+                else if (data["responseStatus"]===2) {
+                    //alert("管理员已登录");
+                    jQuery("#unlogin").show();
+                    jQuery("#login_register").hide();
+                    var aTemp = document.createElement("a");
+                    var liTemp = document.createElement("li");
+                    aTemp.className = "nav-login";
+                    aTemp.href = "/course/newcourse";
+                    aTemp.innerHTML = "课程管理";
+                    liTemp.id = "manage-course";
+                    liTemp.append(aTemp);
+                    document.getElementById("menu-bar").append(liTemp);
+                }
+                
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+        jQuery.ajax({
+            type: "GET",
+            url: "/course/getCourseList",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                data = JSON.parse(data);
+                var value = 0;
+                var courseIndex = document.getElementById("courseIndex");
+                var courseSelectIndex = document.getElementById("_label");
+                var courseArr = data["courseList"];
+                for (var i = 0; i < courseArr.length; i++){
+                    var branch = i % 3;
+
+                    var liTemp = document.createElement("li");
+                    var aTemp = document.createElement("a");
+                    aTemp.className = "scroll always-hide";
+                    aTemp.innerHTML = courseArr[i]["name"];
+
+                    //aTemp.id = "course" + courseArr[i]["courseID"];
+                    aTemp.href = "javascript: jumpToCoursePage(" + courseArr[i]["courseID"] + ");";
+                    liTemp.appendChild(aTemp);
+                    courseIndex.append(liTemp);
+
+                    var targetCourseMapDiv = document.getElementById("course-map-row");
+
+                    var colDivTemp = document.createElement("div");
+                    var courseDivTemp = document.createElement("div");
+                    var iconHolderDivTemp = document.createElement("div");
+                    var courseITemp = document.createElement("i");
+                    var courseHTemp = document.createElement("h3");
+                    var courseDescriptionPTemp = document.createElement("p");
+                    colDivTemp.className = "col-md-4 col-sm-6 col-xs-12";
+                    courseDivTemp.className = "service";
+                    iconHolderDivTemp.className = "icon-holder";
+                    switch(branch){
+                        case 0:
+                        {
+                            courseITemp.className = "fa fa-paper-plane";
+                            break;
+                        }
+                        case 1:
+                        {
+                            courseITemp.className = "fa fa-diamond";
+                            break;
+                        }
+                        case 2:
+                        {
+                            courseITemp.className = "fa fa-camera";
+                            break;
+                        }
+                        case 3:
+                        {
+                            courseITemp.className = "fa fa-heartbeat";
+                            break;
+                        }
+                    }
+                    courseHTemp.className = "heading";
+                    courseDescriptionPTemp.className = "description";
+                    iconHolderDivTemp.append(courseITemp);
+                    courseHTemp.innerHTML = courseArr[i]["name"];
+                    courseDescriptionPTemp.innerHTML = courseArr[i]["profile"];
+                    courseDivTemp.append(iconHolderDivTemp);
+                    courseDivTemp.append(courseHTemp);
+                    courseDivTemp.append(courseDescriptionPTemp);
+                    colDivTemp.append(courseDivTemp);
+                    targetCourseMapDiv.append(colDivTemp);
+
+                    var blogFigureTemp = document.createElement("figure");
+                    var blogImageTemp = document.createElement("img");
+                    var blogH4Temp = document.createElement("h4");
+                    var blogH3Temp = document.createElement("h3");
+                    var blogHeadATemp = document.createElement("a");
+                    var blogTitleATemp = document.createElement("a");
+                    var blogPTemp = document.createElement("p");
+                    var blogDivTemp = document.createElement("div");
+                    var blogArticleTemp = document.createElement("article");
+                    blogHeadATemp.href = "javascript: jumpToCourseBlogPage(" + courseArr[i]["courseID"] + ");";
+                    blogTitleATemp.href = "javascript: jumpToCourseBlogPage(" + courseArr[i]["courseID"] + ");";
+                    blogH4Temp.innerHTML = courseArr[i]["name"];
+                    blogHeadATemp.className = "post-area";
+                    blogTitleATemp.className = "post-title";
+                    blogPTemp.className = "post-content";
+                    blogFigureTemp.className = "blog-thumb";
+                    blogImageTemp.alt = "blog-thumb";
+                    blogDivTemp.className = "post-area";
+                    blogArticleTemp.className = "col-md-4 col-sm-6";
+
+                    switch(branch){
+                        case 0:
+                        {
+                            blogImageTemp.src = "/static/images/blog/blog-1.jpg";
+                            blogH3Temp.innerHTML = "说你想说的事情";
+                            blogPTemp.innerHTML = "在这里你可以畅所欲言";
+                            break;
+                        }
+                        case 1:
+                        {
+                            blogImageTemp.src = "/static/images/blog/blog-2.jpg";
+                            blogH3Temp.innerHTML = "谈天说地";
+                            blogPTemp.innerHTML = "用你们的思想碰撞出火花";
+                            break;
+                        }
+                        case 2:
+                        {
+                            blogImageTemp.src = "/static/images/blog/blog-3.jpg"
+                            blogH3Temp.innerHTML = "提出问题并解决它";
+                            blogPTemp.innerHTML = "在这里，疑惑与解答交织在一起";
+                            break;
+                        }
+                        case 3:
+                        {
+                            blogImageTemp.src = "/static/images/blog/blog-4.jpg"
+                            blogH3Temp.innerHTML = "一起收获成长";
+                            blogPTemp.innerHTML = "在这里，想法得到抒发";
+                            break;
+                        }
+                    }
+
+                    blogFigureTemp.append(blogImageTemp);
+                    blogHeadATemp.append(blogH4Temp);
+                    blogTitleATemp.append(blogH3Temp);
+                    blogDivTemp.append(blogHeadATemp);
+                    blogDivTemp.append(blogTitleATemp);
+                    blogDivTemp.append(blogPTemp);
+
+                    blogArticleTemp.append(blogFigureTemp);
+                    blogArticleTemp.append(blogDivTemp);
+
+                    jQuery("#blog-row").append(blogArticleTemp);
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    };
+    function jumpToCoursePage(i){
+        jQuery.ajax({
+            type : "POST",
+            url : "/course/selectCourse",
+            data : {courseID : i},
+            success : function(data){
+                //alert("success!!!");
+                jQuery(window).attr('location','/course/course');
+            },
+            error : function(data){
+                alert("error!!!");
+            }
+        })
+    };
+    function jumpToCourseBlogPage(i){
+        jQuery.ajax({
+            type : "POST",
+            url : "/course/selectCourse",
+            data : {courseID : i},
+            success : function(data){
+                //alert("success!!!");
+                jQuery(window).attr('location','/blog/stack');
+            },
+            error : function(data){
+                alert("error!!!");
+            }
+        })
+    };
+    function unlogin(){
+        jQuery.ajax({
+            type : "POST",
+            url : "/login/logout",
+            data : {},
+            success : function(data){
+                alert("注销成功");
+                jQuery(window).attr('location','/index');
+            },
+            error : function(data){
+                alert("error!!!");
+            }
+        })
+    }
+</script>
+
+</html>

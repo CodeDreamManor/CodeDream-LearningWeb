@@ -1,0 +1,270 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <link rel="shortcut icon" href="/static/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon/favicon.png" type="image/x-icon">
+
+    <title>交流栈</title>
+	
+    <!--Library Styles-->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/lib/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/lib/nivo-lightbox.css" rel="stylesheet">
+    <link href="/static/css/lib/nivo-themes/default/default.css" rel="stylesheet">
+	
+    <!--Template Styles-->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/scheme/purple.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+      <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .always-hide{
+            display: none;
+        }
+        .scroll:hover .always-hide{
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" src="/static/js/showdown-master/dist/showdown.min.js"></script>
+</head>
+
+<body data-spy="scroll">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <div id="main-wrapper">
+        <div id="menu">
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html#">
+                        <img src="/static/images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/index">主页</a></li>
+                        <li><a id="courseIndex" class="scroll">课程</a></li>
+                        <li class="active"><a href="/blog/stack">交流栈</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div id="container">
+            <section class="contact gray" id="add-chapter">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6" id = "add-chapter">
+                        <h3>发帖
+                            <h4><span>你可以发起一个问题供大家讨论</span></h4>
+                        </h3>
+                        <form role="form">
+                            <div class="form-group row">
+                                <div class="col-md-13">
+                                    <label for="pre_course"  >所属课程：</label><br/>
+                                    <select name="pre_course" id="_label" class="form-control">
+                                        <option disabled="disabled">课程名</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-13">
+                                    <input id="name" type="text" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-13">
+                                    <textarea id="article" class="form-control" rows="10" placeholder="Article" onkeyup = "convert()"></textarea>
+                                </div>
+                            </div>
+                            <br/>
+                            <p>你或许要用到
+                                <abbr title="HyperText Markup Language">Markdown</abbr>&nbsp;tags and attributes:
+                            </p>
+                            <code># 一级标题 , ## 二级标题 , ### 三级标题 , #### 四级标题 , ##### 五级标题 , ###### 六级标题 , *斜体* , _斜体_ , **加粗** , __加粗__ , [显示说明](http://lianjie.net) , 分割线---分割线</code>
+                            <br/>
+                            <button id="subBtn" type="submit" class="btn" onclick = "submitComment()">发表</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-6 col-md-6" id = "result">
+
+                    </div>
+                </div>
+            </section>
+            <!-- END BLOG -->
+            
+            <!-- BEGIN FOOTER -->
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                           我们项目组
+                        </p>                        
+                    </div>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+
+
+
+    <!-- Back to top -->
+    <div class="totop" id="backtotop">       
+        <a class="to-top-btn sscroll" href="index.html#home"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="/static/js/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/lib/jquery.preloader.js"></script>
+    <script src="/static/js/lib/nivo-lightbox.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/lib/jquery.superslides.min.js"></script>
+    <script src="/static/js/lib/smoothscroll.js"></script>
+    <!--<script src="/static/js/lib/jquery.sudoslider.min.js"></script>-->
+    <script src="/static/js/lib/jquery.bxslider.min.js"></script>
+    <script src="/static/js/lib/jquery.mixitup.min.js"></script>
+    <script src="/static/js/lib/jquery.backtotop.js"></script>
+    <script src="/static/js/lib/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="/static/js/lib/retina.min.js"></script>
+
+    <!-- Custom Script -->    
+    <script src="/static/js/main.js"></script>
+</body>
+<script src="/static/js/jquery-1.10.2.min.js"></script>
+<script type = "text/javascript">
+    window.onload = function(){
+        $.ajax({
+            type: "GET",
+            url: "/course/getCourseList",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                data = $.parseJSON(data);
+                var value = 0;
+                var courseIndex = document.getElementById("courseIndex");
+                var courseSelectIndex = document.getElementById("_label");
+                var courseArr = data["courseList"];
+                for (var i = 0; i < courseArr.length; i++){
+                    var liTemp = document.createElement("li");
+                    var aTemp = document.createElement("a");
+                    aTemp.className = "scroll always-hide";
+                    aTemp.innerHTML = courseArr[i]["name"];
+                    aTemp.href = "javascript: jumpToCoursePage(" + courseArr[i]["courseID"] + ");";
+
+                    aTemp.id = "course" + courseArr[i]["courseID"];
+                    liTemp.appendChild(aTemp);
+                    courseIndex.append(liTemp);
+
+                    var optionTemp = document.createElement("option");
+                    optionTemp.innerHTML = courseArr[i]["name"];
+                    optionTemp.value = courseArr[i]["courseID"];
+                    courseSelectIndex.append(optionTemp);
+                }
+            },
+            error : function(data){
+                alert("error");
+            }
+        })
+    };
+    /*
+    function getNow(s){
+        return s < 10 ? "0" + s: s;
+    };
+    */
+    function submitComment(){
+        /*
+        var myDate = new Date(); //获取时间
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var h = myDate.getHours();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+        var now = year + "-" + getNow(month) + "-" + getNow(date) + "-" + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
+        */
+        if ($("#name").val() == ""){
+            alert("请为你的帖子取个标题哦~");
+        }
+        else if($("#article").val() == ""){
+            alert("请不要输入空内容哦~");
+        }
+        else{
+            $.ajax({
+                type : "POST",
+                url : "/blog/addBlog",
+                data : {content : $("#article").val(), title : $("#name").val()},
+                async:false, 
+                dataType : "json",
+                success : function(data){
+                    data = $.parseJSON(data);
+                    if (data["responseStatus"] === 0){
+                        alert("发帖成功");
+                        $(window).attr('location','/blog/stack');
+                    }
+                    else{
+                        alert("发帖失败");
+                    }
+                },
+                error : function(){
+                    console.log(data)
+                    alert("发帖错误");
+                }
+            })
+        }
+    };
+    function convert(){
+        var article = document.getElementById("article").value;
+        var converter = new showdown.Converter();
+        var convertedSummary = converter.makeHtml(article);
+        var targetDiv = document.getElementById("result");
+        targetDiv.innerHTML = convertedSummary;
+    };
+    $(document).ready(function(){
+    	$("#_label").change(function(){
+    		$.ajax({
+    			type : "POST",
+    			url : "/course/selectCourse",
+    			data : {courseID : $("#_label").val()},
+    			data : "json",
+    			success : function(data){
+
+    			},
+    			error : function(data){
+
+    			}
+    		})
+    	})
+    });
+    function jumpToCoursePage(i){
+        $.ajax({
+            type : "POST",
+            url : "/course/selectCourse",
+            data : {courseID : i},
+            success : function(data){
+                //alert("跳转课程成功");
+                $(window).attr('location','/course/course');
+            },
+            error : function(data){
+                alert("跳转课程错误");
+            }
+        })
+    }
+</script>
+
+</html>
