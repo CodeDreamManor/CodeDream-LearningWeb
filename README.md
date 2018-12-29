@@ -1,9 +1,9 @@
 ﻿网站服务器配置： linux centOS7.4系统 web服务器Apache2.4+数据服务器MySQL5.7+后台开发PHP7.1+后台框架ThinkPHP5.1+数据库管理phpMyAdmin4.8.3
 
-model层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\common\model
-view层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\index\view
-controller层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\index\controller
-静态资源文件位于“CodeDream代码.zip”解压缩后文件tp5\public\static
+model层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\common\model；
+view层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\index\view；
+controller层代码位于“CodeDream代码.zip”解压缩后文件tp5\application\index\controller；
+静态资源文件位于“CodeDream代码.zip”解压缩后文件tp5\public\static；
 
 “项目管理”文件夹含项目管理的交付物，包括的是项目管理各交付物的最终版
 “项目研发”文件夹含项目研发的交付物，包括的是项目研发各交付物的最终版
